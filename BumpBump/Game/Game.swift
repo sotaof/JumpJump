@@ -18,14 +18,12 @@ class Game {
 
     var gameState: GameState = .ready
 
-    var score: Int = 0
-
     // Controllers
     var boxController: BoxController!
     var playerController: PlayerController!
     var cameraController: CameraController!
     var inputController: PressInputController!
-    var scoreController: ScoreController = ScoreController()
+    var scoreController: ScoreController!
 
     init(scene: SCNScene, aspectRatio: Float) {
         self.scene = scene
@@ -38,6 +36,7 @@ class Game {
         setupPlayerController()
         setupCameraController()
         setupInputController()
+        setupScoreController()
     }
     
     func syncAspectRatio(_ aspectRatio: Float) {
@@ -65,9 +64,7 @@ class Game {
     }
 
     func restartGame() {
-        // TODO: use controller to manage this
-        self.score = 0
-
+        scoreController.reset()
         boxController.resetBoxes()
         player.reset()
         cameraController.reset()
@@ -103,7 +100,7 @@ class Game {
                     if let nextBox = self.boxController.nextBox, nextBox === box {
                         self.boxController.createNextBox()
                         self.cameraController.updateCamera()
-                        self.score += 1
+                        self.scoreController.addScore(1)
                     }
                     break
                 }
@@ -195,5 +192,11 @@ extension Game {
 extension Game {
     func setupInputController() {
         self.inputController = PressInputController()
+    }
+}
+
+extension Game {
+    func setupScoreController() {
+        self.scoreController = ScoreController.init(scene: self.scene, player: self.player)
     }
 }

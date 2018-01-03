@@ -61,7 +61,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 
         game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width /  self.view.frame.size.height))
 
-        scoreLabel.text = "\(game.score)"
+        scoreLabel.text = "\(game.scoreController.score)"
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -90,19 +90,19 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
             game.update(timeSinceLastUpdate: deltaTime)
 
             DispatchQueue.main.async {
-                self.scoreLabel.text = "\(self.game.score)"
+                self.scoreLabel.text = "\(self.game.scoreController.score)"
             }
         } else if game.gameState == .over {
             self.game.gameState = .preparing
             DispatchQueue.main.async {
                 self.gameStartPanel.isHidden = true
                 self.gameOverPanel.isHidden = false
-                if self.game.scoreController.isNewRecord(newScore: self.game.score) {
+                if self.game.scoreController.isNewRecord() {
                     self.newRecordLabel.isHidden = false
                 } else {
                     self.newRecordLabel.isHidden = true
                 }
-                self.game.scoreController.saveScore(newScore: self.game.score)
+                self.game.scoreController.saveScore()
             }
         }
     }
