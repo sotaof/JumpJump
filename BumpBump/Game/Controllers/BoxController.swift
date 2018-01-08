@@ -15,16 +15,16 @@ class BoxController: ControllerProtocol {
         SCNVector3.init(0, 0, -1),
     ]
 
-    weak var scene: SCNScene?
+    weak var rootNode: SCNNode?
 
     public var currentBox: BaseBox?
     public var nextBox: BaseBox?
 
-    init(scene: SCNScene) {
-        self.scene = scene
+    init(rootNode: SCNNode) {
+        self.rootNode = rootNode
     }
 
-    func resetBoxes() {
+    func reset() {
         clearBoxes()
         putPosition = SCNVector3.init(0, 0, 0)
         currentBox = addBox(direction: nextBoxDirections[0], size: 0.6, nextDistance: 1.0)
@@ -56,7 +56,7 @@ class BoxController: ControllerProtocol {
     }
 
     private func addBox(direction: SCNVector3? = nil, size: Float? = nil, nextDistance: Float? = nil) -> BaseBox? {
-        if let parentNode = scene?.rootNode {
+        if let parentNode = rootNode {
             let newDirectionIndex = Float(arc4random()) / Float(UInt32.max) * Float(nextBoxDirections.count)
             let newDirection = direction ?? nextBoxDirections[Int(newDirectionIndex)]
             let boxDistance: Float = nextDistance ?? Float(arc4random()) / Float(UInt32.max) * 1.0 + 0.8

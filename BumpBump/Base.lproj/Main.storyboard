@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kwp-7J-4Vh">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,9 +14,85 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Game Index View Controller-->
+        <scene sceneID="Tkx-kp-d8w">
+            <objects>
+                <viewController id="Kwp-7J-4Vh" customClass="GameIndexViewController" customModule="BumpBump" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hlP-nu-Upg"/>
+                        <viewControllerLayoutGuide type="bottom" id="9hw-C5-nKj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C05-RJ-Kmg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhK-I1-vfu" userLabel="GameStartPanel">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rq-eW-ls7">
+                                        <rect key="frame" x="111" y="342" width="98" height="48"/>
+                                        <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="40"/>
+                                        <size key="titleShadowOffset" width="2.5" height="2.5"/>
+                                        <state key="normal" title="Play">
+                                            <color key="titleColor" red="0.3411764706" green="0.63921568630000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="titleShadowColor" red="0.18611070169999999" green="0.35302412859999999" blue="0.56675803410000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playButtonTapped" destination="Kwp-7J-4Vh" eventType="touchUpInside" id="gA0-Ji-v43"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qo5-IR-YU3">
+                                        <rect key="frame" x="79" y="274" width="162" height="48"/>
+                                        <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="40"/>
+                                        <size key="titleShadowOffset" width="2.5" height="2.5"/>
+                                        <state key="normal" title="AR Mode">
+                                            <color key="titleColor" red="1" green="0.38568337704560585" blue="0.51175947246458187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" red="0.66378489847715738" green="0.25649467852406038" blue="0.34423856230097771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playARButtonTapped" destination="Kwp-7J-4Vh" eventType="touchUpInside" id="v1O-3x-Ib2"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-Rw-hx8">
+                                        <rect key="frame" x="39.5" y="100" width="241" height="53"/>
+                                        <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="45"/>
+                                        <size key="titleShadowOffset" width="2.5" height="2.5"/>
+                                        <state key="normal" title="Jump Jump">
+                                            <color key="titleColor" red="1" green="0.95043685604557626" blue="0.37883301313397655" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" red="0.88862230328730962" green="0.62934493739071351" blue="0.24980690735827918" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Qo5-IR-YU3" firstAttribute="centerX" secondItem="7rq-eW-ls7" secondAttribute="centerX" id="8Gb-va-vX1"/>
+                                    <constraint firstItem="MaH-Rw-hx8" firstAttribute="top" secondItem="JhK-I1-vfu" secondAttribute="top" constant="100" id="YYE-sN-rKQ"/>
+                                    <constraint firstItem="7rq-eW-ls7" firstAttribute="top" secondItem="Qo5-IR-YU3" secondAttribute="bottom" constant="20" id="kbn-8J-Z9b"/>
+                                    <constraint firstAttribute="bottom" secondItem="7rq-eW-ls7" secondAttribute="bottom" constant="90" id="n0W-6i-fqN"/>
+                                    <constraint firstItem="MaH-Rw-hx8" firstAttribute="centerX" secondItem="JhK-I1-vfu" secondAttribute="centerX" id="nwZ-B8-JNu"/>
+                                    <constraint firstItem="7rq-eW-ls7" firstAttribute="centerX" secondItem="JhK-I1-vfu" secondAttribute="centerX" id="phm-Cw-8Hx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JhK-I1-vfu" firstAttribute="leading" secondItem="C05-RJ-Kmg" secondAttribute="leading" id="L7y-mc-O6b"/>
+                            <constraint firstItem="9hw-C5-nKj" firstAttribute="top" secondItem="JhK-I1-vfu" secondAttribute="bottom" id="Q2z-Do-9p9"/>
+                            <constraint firstAttribute="trailing" secondItem="JhK-I1-vfu" secondAttribute="trailing" id="Rh0-3v-b8F"/>
+                            <constraint firstItem="JhK-I1-vfu" firstAttribute="top" secondItem="C05-RJ-Kmg" secondAttribute="top" id="bCj-2h-sms"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="playGame" id="A2v-5x-sk9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mKh-WZ-2Ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-782" y="-795"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="BumpBump" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oDh-Ul-bIa"/>
@@ -35,27 +110,6 @@
                                 <color key="shadowColor" red="0.38585440141667465" green="0.51699426756743305" blue="0.14782269628293523" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="2.5" height="2.5"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1a-Yg-7s9" userLabel="GameStartPanel">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FX6-bg-eoe">
-                                        <rect key="frame" x="111" y="352" width="98" height="48"/>
-                                        <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="40"/>
-                                        <size key="titleShadowOffset" width="2.5" height="2.5"/>
-                                        <state key="normal" title="Play">
-                                            <color key="titleColor" red="0.3411764705882353" green="0.63921568627450975" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <color key="titleShadowColor" red="0.18611070173377872" green="0.35302412858972781" blue="0.56675803411466108" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startGameButtonTappedWithButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="ldL-lA-EOz"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="FX6-bg-eoe" firstAttribute="centerX" secondItem="X1a-Yg-7s9" secondAttribute="centerX" id="J56-aE-nlh"/>
-                                    <constraint firstAttribute="bottom" secondItem="FX6-bg-eoe" secondAttribute="bottom" constant="80" id="wbX-XK-FKi"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92r-LM-ibt" userLabel="GameFinishPanel">
                                 <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                                 <subviews>
@@ -100,28 +154,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="X1a-Yg-7s9" secondAttribute="trailing" id="2CN-LM-HjP"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" id="77U-Ac-WZQ"/>
-                            <constraint firstItem="hBG-4C-NNm" firstAttribute="top" secondItem="X1a-Yg-7s9" secondAttribute="bottom" id="7Si-rC-LUC"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="trailing" secondItem="iLz-F3-DmL" secondAttribute="trailing" id="Ckk-iA-ZiB"/>
                             <constraint firstItem="si0-Ky-md3" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" constant="24" id="lCw-Hh-QnI"/>
-                            <constraint firstItem="X1a-Yg-7s9" firstAttribute="top" secondItem="iLz-F3-DmL" secondAttribute="top" id="nPp-5v-ViJ"/>
                             <constraint firstItem="si0-Ky-md3" firstAttribute="centerX" secondItem="iLz-F3-DmL" secondAttribute="centerX" id="pUc-WE-ze9"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="bottom" secondItem="hBG-4C-NNm" secondAttribute="top" id="tDb-eT-7Aq"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="leading" secondItem="iLz-F3-DmL" secondAttribute="leading" id="v3h-F4-8BG"/>
-                            <constraint firstItem="X1a-Yg-7s9" firstAttribute="leading" secondItem="iLz-F3-DmL" secondAttribute="leading" id="yOu-8G-MPa"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="gameOverPanel" destination="92r-LM-ibt" id="p4S-oR-zws"/>
-                        <outlet property="gameStartPanel" destination="X1a-Yg-7s9" id="ODP-gT-dta"/>
                         <outlet property="newRecordLabel" destination="Cc2-4X-sTF" id="EPg-yj-e3J"/>
                         <outlet property="scoreLabel" destination="si0-Ky-md3" id="Xko-wm-o64"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31.875" y="33.75"/>
+            <point key="canvasLocation" x="152" y="-794"/>
         </scene>
     </scenes>
 </document>

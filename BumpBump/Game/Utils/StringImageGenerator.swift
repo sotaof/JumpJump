@@ -8,7 +8,6 @@ import CoreGraphics
 
 class StringImageGenerator {
     class func createImage(string: String, foregroundColor: UIColor, backgroundColor: UIColor, size: CGSize) -> UIImage? {
-        print(UIFont.familyNames)
         UIGraphicsBeginImageContext(size)
         if let context = UIGraphicsGetCurrentContext() {
 

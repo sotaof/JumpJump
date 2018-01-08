@@ -29,9 +29,9 @@ class CameraController: ControllerProtocol {
         self.cameraNode = cameraNode
     }
 
-    func setupTarget(player: Player, boxManager: BoxController) {
+    func setupTarget(player: Player, boxController: BoxController) {
         self.player = player
-        self.boxManager = boxManager
+        self.boxManager = boxController
         if let _ = self.player, let boxManager = self.boxManager {
             let targetPosition = (boxManager.currentBox!.boxPosition + boxManager.nextBox!.boxPosition) * 0.5
             self.relativePosition = self.cameraNode.position - targetPosition

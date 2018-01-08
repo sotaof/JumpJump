@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0fbc18e6-cd88-4103-a7f8-7d4afdc38ab8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BumpBump.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/BumpBump.xcodeproj/project.pbxproj" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/BumpBump/Base.lproj/Main.storyboard" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/GameViewController.swift" afterPath="$PROJECT_DIR$/BumpBump/GameViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/Resources/SHPinscher-Regular.otf" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BumpBump.xcodeproj/project.xcworkspace/xcuserdata/yangwang.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/BumpBump.xcodeproj/project.xcworkspace/xcuserdata/yangwang.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BumpBump.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/BumpBump.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BumpBump/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/BumpBump/Base.lproj/Main.storyboard" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BumpBump/Game/Controllers/BoxController.swift" afterPath="$PROJECT_DIR$/BumpBump/Game/Controllers/BoxController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BumpBump/Game/Controllers/CameraController.swift" afterPath="$PROJECT_DIR$/BumpBump/Game/Controllers/CameraController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BumpBump/Game/Game.swift" afterPath="$PROJECT_DIR$/BumpBump/Game/Game.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BumpBump/GameViewController.swift" afterPath="$PROJECT_DIR$/BumpBump/GameViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BumpBump/Info.plist" afterPath="$PROJECT_DIR$/BumpBump/Info.plist" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,40 +18,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_92D916F9-A0FF-4654-A122-3D789F832781" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_41F6A7FD-4024-40AE-B014-CB5E9048C48E" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="GameViewController.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BumpBump/GameViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1820">
-              <caret line="94" column="55" lean-forward="false" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
+            <state relative-caret-position="1760">
+              <caret line="91" column="55" lean-forward="false" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
               <folding>
                 <element signature="e#138#155#0" expanded="true" />
-                <marker date="1514871445595" expanded="true" signature="2632:2638" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameObject.swift" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameObject.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BumpBump/GameObject.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="34" lean-forward="false" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+            <state relative-caret-position="160">
+              <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoxController.swift" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BoxController.swift" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BumpBump/Game/Controllers/BoxController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="980">
-              <caret line="49" column="75" lean-forward="false" selection-start-line="49" selection-start-column="75" selection-end-line="49" selection-end-column="75" />
-              <folding>
-                <element signature="e#96#111#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="100">
+              <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -67,10 +66,11 @@
       <file leaf-file-name="Game.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BumpBump/Game/Game.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="88" column="13" lean-forward="false" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
+            <state relative-caret-position="1980">
+              <caret line="100" column="13" lean-forward="false" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
               <folding>
                 <element signature="e#96#111#0" expanded="true" />
+                <marker date="1515079317000" expanded="true" signature="137:164" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -93,7 +93,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="920">
               <caret line="46" column="28" lean-forward="false" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-              <folding />
+              <folding>
+                <marker date="1514990362000" expanded="true" signature="156:2147" ph="{...}" />
+                <marker date="1514990362000" expanded="true" signature="684:802" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,10 +104,12 @@
       <file leaf-file-name="Player.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BumpBump/Game/Roles/Player.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="62" column="46" lean-forward="false" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+            <state relative-caret-position="1280">
+              <caret line="66" column="46" lean-forward="false" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
               <folding>
                 <element signature="e#96#111#0" expanded="true" />
+                <marker date="1514984690000" expanded="true" signature="263:5676" ph="{...}" />
+                <marker date="1514984690000" expanded="true" signature="1211:1309" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -113,9 +118,15 @@
       <file leaf-file-name="BaseBox.swift" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BumpBump/Game/Roles/BaseBox.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="33" column="44" lean-forward="false" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="580">
+              <caret line="29" column="44" lean-forward="false" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+              <folding>
+                <marker date="1514990362000" expanded="true" signature="139:1454" ph="{...}" />
+                <marker date="1514990362000" expanded="true" signature="1106:1165" ph="{...}" />
+                <marker date="1514990362000" expanded="true" signature="1218:1226" ph="{...}" />
+                <marker date="1514990362000" expanded="true" signature="1259:1294" ph="{...}" />
+                <marker date="1514990362000" expanded="true" signature="1321:1450" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,6 +139,7 @@
       <find>floorNode</find>
       <find>followCamera</find>
       <find>groundY</find>
+      <find>scene</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,7 +161,6 @@
         <option value="$PROJECT_DIR$/BumpBump/Game/Controllers/InputController.swift" />
         <option value="$PROJECT_DIR$/BumpBump/Game/Controllers/ControllerProtocol.swift" />
         <option value="$PROJECT_DIR$/BumpBump/Game/Controllers/CameraController.swift" />
-        <option value="$PROJECT_DIR$/BumpBump/Game/Controllers/BoxController.swift" />
         <option value="$PROJECT_DIR$/BumpBump/Game/Utils/UIColorExtension.swift" />
         <option value="$PROJECT_DIR$/BumpBump/Game/Roles/BaseBox.swift" />
         <option value="$PROJECT_DIR$/BumpBump/Game/Controllers/PressInputController.swift" />
@@ -157,6 +168,7 @@
         <option value="$PROJECT_DIR$/BumpBump/Game/Game.swift" />
         <option value="$PROJECT_DIR$/BumpBump/Game/Controllers/PlayerController.swift" />
         <option value="$PROJECT_DIR$/BumpBump/Game/Roles/Player.swift" />
+        <option value="$PROJECT_DIR$/BumpBump/Game/Controllers/BoxController.swift" />
       </list>
     </option>
   </component>
@@ -187,7 +199,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -204,6 +215,19 @@
               <item name="" type="efc3779f:XcodeRootNode" />
               <item name="BumpBump" type="1d218c8b:XcodeProjectNode" />
               <item name="BumpBump" type="fcab9f18:XcodeViewNode" />
+              <item name="Game" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="BumpBump" type="1d218c8b:XcodeProjectNode" />
+              <item name="BumpBump" type="fcab9f18:XcodeViewNode" />
+              <item name="Game" type="fcab9f18:XcodeViewNode" />
+              <item name="Controllers" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="BumpBump" type="1d218c8b:XcodeProjectNode" />
+              <item name="BumpBump" type="fcab9f18:XcodeViewNode" />
               <item name="Resources" type="fcab9f18:XcodeViewNode" />
             </path>
             <path>
@@ -215,6 +239,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -233,7 +258,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.BumpBump">
     <configuration name="BumpBump" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="BumpBump" TARGET_NAME="BumpBump" CONFIG_NAME="Debug" SCHEME_NAME="BumpBump" RUN_TARGET_PROJECT_NAME="BumpBump" RUN_TARGET_NAME="BumpBump" MAKE_ACTIVE="TRUE">
       <envs />
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
@@ -261,20 +286,21 @@
       <workItem from="1514637495595" duration="16402000" />
       <workItem from="1514731149014" duration="17409000" />
       <workItem from="1514870462807" duration="426000" />
+      <workItem from="1515079726240" duration="650000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48347000" />
+    <option name="totallyTimeSpent" value="48997000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1436" height="877" extended-state="0" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20543176" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20543176" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.007453416" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -288,7 +314,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -317,7 +343,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="33" column="44" lean-forward="false" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-          <folding />
+          <folding>
+            <marker date="1514990362000" expanded="true" signature="139:1454" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1106:1165" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1218:1226" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1259:1294" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1321:1450" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -335,7 +367,6 @@
           <caret line="97" column="55" lean-forward="false" selection-start-line="97" selection-start-column="55" selection-end-line="97" selection-end-column="55" />
           <folding>
             <element signature="e#138#155#0" expanded="true" />
-            <marker date="1514871445595" expanded="true" signature="2632:2638" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -344,9 +375,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-          <folding>
-            <element signature="e#96#111#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -371,6 +400,7 @@
           <caret line="16" column="18" lean-forward="true" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
           <folding>
             <element signature="e#96#111#0" expanded="true" />
+            <marker date="1515079317000" expanded="true" signature="137:164" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -381,6 +411,8 @@
           <caret line="40" column="30" lean-forward="false" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
           <folding>
             <element signature="e#96#111#0" expanded="true" />
+            <marker date="1514984690000" expanded="true" signature="263:5676" ph="{...}" />
+            <marker date="1514984690000" expanded="true" signature="1211:1309" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -389,7 +421,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="34" column="48" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
-          <folding />
+          <folding>
+            <marker date="1514990362000" expanded="true" signature="139:1454" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1106:1165" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1218:1226" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1259:1294" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1321:1450" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -412,7 +450,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
-          <folding />
+          <folding>
+            <marker date="1514990362000" expanded="true" signature="156:2147" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="684:802" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -422,7 +463,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#138#155#0" expanded="true" />
-            <marker date="1514871445595" expanded="true" signature="2632:2638" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -440,6 +480,8 @@
           <caret line="118" column="37" lean-forward="false" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="37" />
           <folding>
             <element signature="e#96#111#0" expanded="true" />
+            <marker date="1514984690000" expanded="true" signature="263:5676" ph="{...}" />
+            <marker date="1514984690000" expanded="true" signature="1211:1309" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -490,7 +532,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#138#155#0" expanded="true" />
-            <marker date="1514871445595" expanded="true" signature="2632:2638" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -508,6 +549,8 @@
           <caret line="118" column="37" lean-forward="false" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="37" />
           <folding>
             <element signature="e#96#111#0" expanded="true" />
+            <marker date="1514984690000" expanded="true" signature="263:5676" ph="{...}" />
+            <marker date="1514984690000" expanded="true" signature="1211:1309" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -516,7 +559,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="860">
           <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1514990362000" expanded="true" signature="139:1454" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1106:1165" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1218:1226" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1259:1294" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1321:1450" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -566,7 +615,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#138#155#0" expanded="true" />
-            <marker date="1514871445595" expanded="true" signature="2632:2638" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -584,6 +632,8 @@
           <caret line="8" column="33" lean-forward="false" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
           <folding>
             <element signature="e#96#111#0" expanded="true" />
+            <marker date="1514984690000" expanded="true" signature="263:5676" ph="{...}" />
+            <marker date="1514984690000" expanded="true" signature="1211:1309" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -609,7 +659,6 @@
           <caret line="10" column="15" lean-forward="false" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
           <folding>
             <element signature="e#138#155#0" expanded="true" />
-            <marker date="1514871445595" expanded="true" signature="2632:2638" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -655,17 +704,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="12" column="66" lean-forward="false" selection-start-line="12" selection-start-column="66" selection-end-line="12" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BumpBump/GameViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1820">
-          <caret line="94" column="55" lean-forward="false" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="55" />
+        <state relative-caret-position="1760">
+          <caret line="91" column="55" lean-forward="false" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
           <folding>
             <element signature="e#138#155#0" expanded="true" />
-            <marker date="1514871445595" expanded="true" signature="2632:2638" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -678,39 +725,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BumpBump/Game/Controllers/BoxController.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="980">
-          <caret line="49" column="75" lean-forward="false" selection-start-line="49" selection-start-column="75" selection-end-line="49" selection-end-column="75" />
-          <folding>
-            <element signature="e#96#111#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BumpBump/Game/Controllers/PlayerController.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="46" column="28" lean-forward="false" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
-          <folding />
+          <folding>
+            <marker date="1514990362000" expanded="true" signature="156:2147" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="684:802" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BumpBump/Game/Roles/Player.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="62" column="46" lean-forward="false" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
+        <state relative-caret-position="1280">
+          <caret line="66" column="46" lean-forward="false" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="46" />
           <folding>
             <element signature="e#96#111#0" expanded="true" />
+            <marker date="1514984690000" expanded="true" signature="263:5676" ph="{...}" />
+            <marker date="1514984690000" expanded="true" signature="1211:1309" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BumpBump/Game/Roles/BaseBox.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="33" column="44" lean-forward="false" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
-          <folding />
+        <state relative-caret-position="580">
+          <caret line="29" column="44" lean-forward="false" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+          <folding>
+            <marker date="1514990362000" expanded="true" signature="139:1454" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1106:1165" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1218:1226" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1259:1294" ph="{...}" />
+            <marker date="1514990362000" expanded="true" signature="1321:1450" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -726,18 +774,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BumpBump/Game/Game.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="88" column="13" lean-forward="false" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
+        <state relative-caret-position="1980">
+          <caret line="100" column="13" lean-forward="false" selection-start-line="100" selection-start-column="13" selection-end-line="100" selection-end-column="13" />
           <folding>
             <element signature="e#96#111#0" expanded="true" />
+            <marker date="1515079317000" expanded="true" signature="137:164" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/BumpBump/GameObject.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="34" lean-forward="false" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        <state relative-caret-position="160">
+          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BumpBump/Game/Controllers/BoxController.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="12" />
           <folding />
         </state>
       </provider>

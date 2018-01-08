@@ -53,14 +53,18 @@ class Player: GameObject {
         material.lightingModel = .blinn
         material.ambient.contents = UIColor.orange.cgColor
         
-//        let geometry = SCNCone.init(topRadius: 0.15, bottomRadius: 0.0, height: 0.7)
-        // 根据我家老婆大人的指示，把它换成球
-        let geometry = SCNSphere.init(radius: 0.1)
-        geometry.materials = [material]
+        let body = SCNCone.init(topRadius: 0.04, bottomRadius: 0.065, height: 0.2)
+        body.materials = [material]
+        let bodyNode = SCNNode.init(geometry: body)
+        let head = SCNSphere.init(radius: 0.05)
+        head.materials = [material]
+        let headNode = SCNNode.init(geometry: head)
+        headNode.position = SCNVector3.init(0, 0.17, 0)
 
-
-        scnNode = SCNNode.init(geometry: geometry)
-        scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.1, 0)
+        scnNode = SCNNode.init()
+        scnNode.addChildNode(bodyNode)
+        scnNode.addChildNode(headNode)
+        scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
         scnNode.castsShadow = true
 
         if let particleSystem = SCNParticleSystem.init(named: "prepare", inDirectory: "./") {
@@ -90,12 +94,13 @@ class Player: GameObject {
     }
 
     func falldown(onTopCheckResult: OnTopCheckResult) {
-        self.scnNode.rotation = SCNVector4.init(0, 0, 1, 0)
+        self.scnNode.rotation = SCNVector4.init(onTopCheckResult.fallRotationAxis.x, onTopCheckResult.fallRotationAxis.y, onTopCheckResult.fallRotationAxis.z, 0)
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 1.0
         let position = self.scnNode.position
-        self.scnNode.position = SCNVector3.init(position.x, 0.0, position.z)
-        self.scnNode.rotation = SCNVector4.init(0, 0, 1,  Float(onTopCheckResult.falldownSide.rawValue) * -90.0 / 180.0 * Float.pi)
+        let minz = (self.rootNode().boundingBox.max - self.rootNode().boundingBox.min).z
+        self.scnNode.position = SCNVector3.init(position.x, minz, position.z)
+        self.scnNode.rotation = SCNVector4.init(onTopCheckResult.fallRotationAxis.x, onTopCheckResult.fallRotationAxis.y, onTopCheckResult.fallRotationAxis.z,  Float(onTopCheckResult.falldownSide.rawValue) * 90.0 / 180.0 * Float.pi)
         SCNTransaction.commit()
     }
 
@@ -133,7 +138,7 @@ class Player: GameObject {
                 }
                 let rotateAxis = jumpRotateAxis()
                 // TODO: 增加非线性的动画方案， 现在形状是球，所以别转了。。。
-//                scnNode.rotation = SCNVector4.init(rotateAxis.x, rotateAxis.y, rotateAxis.z, jumpingRotation / 180.0 * Float.pi)
+                scnNode.rotation = SCNVector4.init(rotateAxis.x, rotateAxis.y, rotateAxis.z, jumpingRotation / 180.0 * Float.pi)
                 // TODO: 怕自己看不懂，分步骤解答，用于弹跳过程中的伸缩计算，先伸展，然后回到初始状态
                 var scaleFactor = 1.0 - jumpingRotation / 180.0 // -1 ~ 1
                 scaleFactor = abs(scaleFactor) // 1 ~ 0 ~ 1

@@ -9,6 +9,17 @@
 import XCTest
 @testable import BumpBump
 
+@objc
+protocol TestProtocol {
+    
+}
+
+class TestTarget: TestProtocol {
+    deinit {
+        print("Deinit")
+    }
+}
+
 class BumpBumpTests: XCTestCase {
     
     override func setUp() {
@@ -21,16 +32,18 @@ class BumpBumpTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testRepeatPut() {
+        let delegates = HTMulticastDelegate<TestProtocol>()
+        var target: TestTarget? = TestTarget()
+        delegates += target as! TestTarget
+        delegates += target as! TestTarget
+        var invokeCount = 0
+        delegates.invoke { target in
+            invokeCount += 1
+        }
+        XCTAssert(invokeCount == 1, "HTMulticastDelegate重复添加测试")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
     
 }
+

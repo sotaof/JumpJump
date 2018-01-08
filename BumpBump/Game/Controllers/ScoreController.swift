@@ -11,19 +11,29 @@ import SpriteKit
 
 let kScoreSaveKey = "kScoreSaveKey"
 
-class ScoreController {
-    var scene: SCNScene!
+@objc
+protocol ScoreControllerDelegate {
+    func scoreControllerScoreDidChanged(scoreController: ScoreController, oldScore: Int, newScore: Int)
+}
+
+@objc
+class ScoreController: NSObject {
+    var rootNode: SCNNode!
     var player: Player!
     
+    var delegates: HTMulticastDelegate<ScoreControllerDelegate> = HTMulticastDelegate<ScoreControllerDelegate>()
+    
     public var score: Int = 0
-    init(scene: SCNScene, player: Player) {
-        self.scene = scene
+    init(rootNode: SCNNode, player: Player) {
+        self.rootNode = rootNode
         self.player = player
     }
     
     func addScore(_ scoreAdded: Int) {
-        score += scoreAdded
-
+        self.delegates.invoke { delegate in
+            delegate.scoreControllerScoreDidChanged(scoreController: self, oldScore: score, newScore: score + scoreAdded)
+        }
+        self.score += scoreAdded
         doAddScoreEffect(scoreAdded: scoreAdded)
     }
     
@@ -38,7 +48,7 @@ class ScoreController {
         
         geometry.materials = [material]
         effectNode.geometry = geometry
-        self.scene.rootNode.addChildNode(effectNode)
+        rootNode.addChildNode(effectNode)
         let billboardConstraint = SCNBillboardConstraint()
         billboardConstraint.freeAxes = .all
         effectNode.constraints = [billboardConstraint]
@@ -53,6 +63,9 @@ class ScoreController {
     }
     
     func reset() {
+        self.delegates.invoke { delegate in
+            delegate.scoreControllerScoreDidChanged(scoreController: self, oldScore: score, newScore: 0)
+        }
         self.score = 0
     }
     

@@ -6,6 +6,13 @@
 import SceneKit
 import UIKit
 
+enum GameState {
+    case preparing
+    case ready
+    case running
+    case over
+}
+
 class Game {
     var scene: SCNScene!
     var aspectRatio: Float!
@@ -15,6 +22,8 @@ class Game {
     var floorNode: SCNNode!
 
     var player: Player!
+    
+    var gameNode: SCNNode!
 
     var gameState: GameState = .ready
 
@@ -28,6 +37,8 @@ class Game {
     init(scene: SCNScene, aspectRatio: Float) {
         self.scene = scene
         self.aspectRatio = aspectRatio
+        self.gameNode = SCNNode()
+        self.scene.rootNode.addChildNode(self.gameNode)
 
         setupCamera()
         setupMainScene()
@@ -41,7 +52,6 @@ class Game {
     
     func syncAspectRatio(_ aspectRatio: Float) {
         self.aspectRatio = aspectRatio
-        
     }
 
     func setupCamera() {
@@ -58,15 +68,16 @@ class Game {
 
     func startGame() {
         // 按照依赖次序配置
-        boxController.resetBoxes()
+        boxController.reset()
         playerController.setupEnvironment(boxController: self.boxController, inputController: self.inputController)
-        cameraController.setupTarget(player: self.player, boxManager: self.boxController)
+        cameraController.setupTarget(player: self.player, boxController: self.boxController)
+        self.gameState = .running
     }
 
     func restartGame() {
         scoreController.reset()
-        boxController.resetBoxes()
-        player.reset()
+        boxController.reset()
+        playerController.reset()
         cameraController.reset()
     }
 
@@ -86,7 +97,7 @@ class Game {
         for box in self.boxController.boxObjects {
             let boxCollider = BoxCollider.fromSCNNode(scnNode: box.rootNode())
             if self.player.isOnGround {
-                var checkResult: OnTopCheckResult = OnTopCheckResult(isOnTop: false, falldownSide: .forward, distance: 0)
+                var checkResult: OnTopCheckResult = OnTopCheckResult(isOnTop: false, falldownSide: .forward, fallRotationAxis: SCNVector3Zero, distance: 0)
                 if playerCollider.isOnTheTopOfCollider(bottomOne: boxCollider, result: &checkResult, forwardVector: player.jumpForwardVector) == false {
                     if onTopCheckResult == nil {
                         onTopCheckResult = checkResult
@@ -127,13 +138,15 @@ extension Game {
         material.diffuse.contents = UIColor.white.cgColor
         material.lightingModel = .constant
         material.writesToDepthBuffer = true
-//        material.colorBufferWriteMask
-
+        if #available(iOS 11.0, *) {
+            material.colorBufferWriteMask = []
+        }
+        
         let floor = SCNPlane.init(width: 20, height: 20)
         floor.materials = [material]
         floorNode = SCNNode.init(geometry: floor)
         floorNode.transform = SCNMatrix4MakeRotation(-Float.pi / 2.0, 1, 0, 0)
-        self.scene.rootNode.addChildNode(floorNode)
+        self.gameNode.addChildNode(floorNode)
         floorNode.castsShadow = true
     }
 
@@ -163,14 +176,14 @@ extension Game {
 
     func createPlayer() {
         player = Player()
-        player.addToNode(baseNode: self.scene.rootNode)
+        player.addToNode(baseNode: self.gameNode)
     }
 }
 
 // Setup Box Controller & Prepare Boxes
 extension Game {
     func setupBoxController() {
-        self.boxController = BoxController.init(scene: self.scene)
+        self.boxController = BoxController.init(rootNode: self.gameNode)
     }
 }
 
@@ -195,8 +208,9 @@ extension Game {
     }
 }
 
+// Score Controller
 extension Game {
     func setupScoreController() {
-        self.scoreController = ScoreController.init(scene: self.scene, player: self.player)
+        self.scoreController = ScoreController.init(rootNode: self.gameNode, player: self.player)
     }
 }

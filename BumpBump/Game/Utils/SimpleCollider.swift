@@ -18,6 +18,7 @@ enum FallDownSide: Int {
 struct OnTopCheckResult {
     var isOnTop: Bool
     var falldownSide: FallDownSide
+    var fallRotationAxis: SCNVector3
     var distance: Float
 }
 
@@ -53,11 +54,17 @@ struct BoxCollider {
             return true
         } else {
             result.isOnTop = false
-            if topOneBottomCenter * forwardVector < bottomOne.boundingBoxMin * forwardVector {
+            let bottomOneTopCenter = bottomOne.topCenterPoint()
+            var bottomOneTopToTopOneBottomVec = topOneBottomCenter - bottomOneTopCenter
+            bottomOneTopToTopOneBottomVec = bottomOneTopToTopOneBottomVec.normalize()
+            if GLKVector3DotProduct(SCNVector3ToGLKVector3(bottomOneTopToTopOneBottomVec), SCNVector3ToGLKVector3(forwardVector.normalize())) <= 0 {
                 result.falldownSide = .backward
             } else {
                 result.falldownSide = .forward
             }
+            
+            let rotationAroundY = GLKQuaternionMakeWithAngleAndAxis(GLKMathDegreesToRadians(90), 0, 1, 0)
+            result.fallRotationAxis = SCNVector3FromGLKVector3(GLKQuaternionRotateVector3(rotationAroundY, SCNVector3ToGLKVector3(forwardVector.normalize())))
             result.distance = GLKVector3Distance(SCNVector3ToGLKVector3(topOneBottomCenter), SCNVector3ToGLKVector3(bottomOne.topCenterPoint()))
         }
         return false
