@@ -36,7 +36,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         let scnView = self.view as! SCNView
         scnView.scene = scene
         scnView.delegate = self
-        scnView.backgroundColor = UIColor.white
+        scnView.backgroundColor = UIColor.lightGray
         scene.rootNode.castsShadow = true
         if #available(iOS 10.0, *) {
             scnView.rendersContinuously = true
