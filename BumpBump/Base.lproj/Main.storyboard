@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kwp-7J-4Vh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kwp-7J-4Vh">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,8 +54,8 @@
                                             <action selector="playARButtonTapped" destination="Kwp-7J-4Vh" eventType="touchUpInside" id="v1O-3x-Ib2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-Rw-hx8">
-                                        <rect key="frame" x="39.5" y="100" width="241" height="53"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaH-Rw-hx8">
+                                        <rect key="frame" x="20" y="100" width="260" height="150"/>
                                         <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="45"/>
                                         <size key="titleShadowOffset" width="2.5" height="2.5"/>
                                         <state key="normal" title="Jump Jump">
@@ -87,12 +88,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKh-WZ-2Ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-782" y="-795"/>
+            <point key="canvasLocation" x="-783.75" y="-795"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
                 <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="BumpBump" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oDh-Ul-bIa"/>
@@ -102,14 +102,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si0-Ky-md3">
-                                <rect key="frame" x="125" y="44" width="71" height="45"/>
-                                <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="47"/>
-                                <color key="textColor" red="0.59268982332516329" green="0.79217090482026142" blue="0.22522180095996733" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.38585440141667465" green="0.51699426756743305" blue="0.14782269628293523" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="shadowOffset" width="2.5" height="2.5"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGS-YH-cTa" customClass="ScoreCard" customModule="BumpBump" customModuleProvider="target">
+                                <rect key="frame" x="130" y="50" width="60" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5Eb-46-8se"/>
+                                    <constraint firstAttribute="width" constant="60" id="bsx-GZ-N3f"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92r-LM-ibt" userLabel="GameFinishPanel">
                                 <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                                 <subviews>
@@ -155,9 +155,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" id="77U-Ac-WZQ"/>
+                            <constraint firstItem="AGS-YH-cTa" firstAttribute="centerX" secondItem="iLz-F3-DmL" secondAttribute="centerX" id="Bqi-0O-4Vh"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="trailing" secondItem="iLz-F3-DmL" secondAttribute="trailing" id="Ckk-iA-ZiB"/>
-                            <constraint firstItem="si0-Ky-md3" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" constant="24" id="lCw-Hh-QnI"/>
-                            <constraint firstItem="si0-Ky-md3" firstAttribute="centerX" secondItem="iLz-F3-DmL" secondAttribute="centerX" id="pUc-WE-ze9"/>
+                            <constraint firstItem="AGS-YH-cTa" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" constant="30" id="Vhk-Xr-0wX"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="bottom" secondItem="hBG-4C-NNm" secondAttribute="top" id="tDb-eT-7Aq"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="leading" secondItem="iLz-F3-DmL" secondAttribute="leading" id="v3h-F4-8BG"/>
                         </constraints>
@@ -165,9 +165,10 @@
                     <connections>
                         <outlet property="gameOverPanel" destination="92r-LM-ibt" id="p4S-oR-zws"/>
                         <outlet property="newRecordLabel" destination="Cc2-4X-sTF" id="EPg-yj-e3J"/>
-                        <outlet property="scoreLabel" destination="si0-Ky-md3" id="Xko-wm-o64"/>
+                        <outlet property="scoreLabel" destination="AGS-YH-cTa" id="cce-G1-r6x"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="152" y="-794"/>
         </scene>

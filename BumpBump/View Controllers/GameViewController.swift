@@ -20,7 +20,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     var lastUpdateTime: TimeInterval = -1
     
     var game: Game!
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var scoreLabel: ScoreCard!
     @IBOutlet weak var newRecordLabel: UILabel!
     @IBOutlet weak var gameOverPanel: UIView!
     
@@ -101,7 +101,7 @@ extension GameViewController: ScoreControllerDelegate {
     
     func scoreControllerScoreDidChanged(scoreController: ScoreController, oldScore: Int, newScore: Int) {
         DispatchQueue.main.async {
-            self.scoreLabel.text = "\(newScore)"
+            self.scoreLabel.setScore(score: newScore)
         }
     }
 }
