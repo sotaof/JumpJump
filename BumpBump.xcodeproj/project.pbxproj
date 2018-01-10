@@ -15,6 +15,7 @@
 		3DF8C1321FFFC5EE00190073 /* GameIndexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8C1311FFFC5EE00190073 /* GameIndexViewController.swift */; };
 		3DF8C1351FFFC76F00190073 /* GameARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8C1341FFFC76F00190073 /* GameARViewController.swift */; };
 		3DF8C1372000A5D400190073 /* HTMulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8C1362000A5D400190073 /* HTMulticastDelegate.swift */; };
+		3DF8C139200661D000190073 /* CABlockedAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8C138200661D000190073 /* CABlockedAnimation.swift */; };
 		8E74DB572006445B00C5A121 /* newrecord.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 8E74DB562006445B00C5A121 /* newrecord.scnp */; };
 		8E94753C2004FE7E0030854B /* ScoreCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94753B2004FE7E0030854B /* ScoreCard.swift */; };
 		8EE2F5291FF5FF4400085BCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2F5281FF5FF4400085BCF /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		3DF8C1311FFFC5EE00190073 /* GameIndexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIndexViewController.swift; sourceTree = "<group>"; };
 		3DF8C1341FFFC76F00190073 /* GameARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameARViewController.swift; sourceTree = "<group>"; };
 		3DF8C1362000A5D400190073 /* HTMulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMulticastDelegate.swift; sourceTree = "<group>"; };
+		3DF8C138200661D000190073 /* CABlockedAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CABlockedAnimation.swift; sourceTree = "<group>"; };
 		8E74DB562006445B00C5A121 /* newrecord.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = newrecord.scnp; sourceTree = "<group>"; };
 		8E94753B2004FE7E0030854B /* ScoreCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCard.swift; sourceTree = "<group>"; };
 		8EE2F5251FF5FF4400085BCF /* BumpBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumpBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				8E94753B2004FE7E0030854B /* ScoreCard.swift */,
+				3DF8C138200661D000190073 /* CABlockedAnimation.swift */,
 			);
 			name = "UI Controls";
 			path = "New Group";
@@ -340,6 +343,7 @@
 				3D75A8371FFBC9F000B93F3C /* ScoreController.swift in Sources */,
 				E642CDD9D0E78B221799436D /* SCNOperators.swift in Sources */,
 				E642C4D8C495D166DE36754F /* SimpleCollider.swift in Sources */,
+				3DF8C139200661D000190073 /* CABlockedAnimation.swift in Sources */,
 				3D75A83C1FFD2A9800B93F3C /* StringImageGenerator.swift in Sources */,
 				E642C35AC971E968970A704D /* PressInputController.swift in Sources */,
 				E642CE5E13D19EC70C607C73 /* CameraController.swift in Sources */,

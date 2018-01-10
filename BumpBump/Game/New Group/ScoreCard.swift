@@ -7,11 +7,53 @@
 //
 
 import UIKit
+class ScoreCardLayer: CALayer {
+    @objc var flipDegree: CGFloat = 0
+    var frontLayer: CALayer?
+    var backLayer: CALayer?
+    
+    func setupLayers(frontLayer: CALayer, backLayer: CALayer) {
+        self.frontLayer = frontLayer
+        self.backLayer = backLayer
+        
+        syncFlipDegree(self.flipDegree)
+    }
+    
+    override func layoutSublayers() {
+        super.layoutSublayers()
+        
+        self.frontLayer?.frame = self.bounds
+        self.backLayer?.frame = self.bounds
+    }
+    
+    func syncFlipDegree(_ flipDegree: CGFloat) {
+        let rad = flipDegree * CGFloat.pi / 180.0
+        var transform = CATransform3DIdentity
+        transform.m34 = 1.0 / -200.0
+        let backTransform = CATransform3DRotate(transform, CGFloat.pi + rad, 1, 0, 0)
+        let frontTransform = CATransform3DRotate(transform, rad, 1, 0, 0)
+        self.frontLayer?.transform = frontTransform
+        self.backLayer?.transform = backTransform
+    }
+    
+    override func display() {
+        if let flipDegree = presentation()?.flipDegree {
+            syncFlipDegree(flipDegree)
+        }
+    }
+    
+    override class func needsDisplay(forKey key: String) -> Bool {
+        if key == "flipDegree" {
+            return true
+        }
+        return super.needsDisplay(forKey: key)
+    }
+}
+
 class ScoreCard: UIView {
     lazy var frontLabel: UILabel = {
         let label = UILabel.init(frame: self.bounds)
         self.addSubview(label)
-        label.layer.isDoubleSided = true
         self.setupLabelApperance(label: label)
         return label
     }()
@@ -20,65 +62,49 @@ class ScoreCard: UIView {
         let label = UILabel.init(frame: self.bounds)
         self.addSubview(label)
         label.layer.transform = CATransform3DMakeRotation(CGFloat.pi, 1, 0, 0)
-        label.layer.isDoubleSided = true
         self.setupLabelApperance(label: label)
-        label.alpha = 0
         return label
     }()
+    
+    override class var layerClass: Swift.AnyClass {
+        return ScoreCardLayer.self
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.clear
         self.frontLabel.text = "0"
-        self.backLabel.text = "0"
+        self.backLabel.text = "1"
+        let scoreCardLayer = self.layer as! ScoreCardLayer
+        scoreCardLayer.setupLayers(frontLayer: self.frontLabel.layer, backLayer: self.backLabel.layer)
     }
     
     func setupLabelApperance(label: UILabel) {
         label.font = UIFont.init(name: "Upheaval TT (BRK)", size: 55)
         label.textAlignment = .center
         label.textColor = UIColor.white
-        label.backgroundColor = UIColor.red
+        label.backgroundColor = UIColor.clear
         label.shadowColor = UIColor.black
         label.shadowOffset = CGSize.init(width: 2.5, height: 2.5)
+        label.layer.isDoubleSided = false
     }
     
     func flip() {
-        var transformIdentity = CATransform3DIdentity
-        transformIdentity.m34 = 1.0 / -200.0
-        transformIdentity = CATransform3DRotate(transformIdentity, 2 * CGFloat.pi, 1, 0, 0)
-        
-        var transformFlipPI = CATransform3DIdentity
-        transformFlipPI.m34 = 1.0 / -200.0
-        transformFlipPI = CATransform3DRotate(transformFlipPI, 1.1 * CGFloat.pi, 1, 0, 0)
-        
-        var transformFlip2PI = CATransform3DIdentity
-        transformFlip2PI.m34 = 1.0 / -200.0
-        transformFlip2PI = CATransform3DRotate(transformFlip2PI, 1.9 * CGFloat.pi, 1, 0, 0)
-        
-        let frontFlipAnimation = CAKeyframeAnimation.init(keyPath: "transform")
-        frontFlipAnimation.keyTimes = [0, 0.5, 1.0]
-        frontFlipAnimation.values = [
-            NSValue.init(caTransform3D: transformIdentity),
-            NSValue.init(caTransform3D: transformFlipPI),
-            NSValue.init(caTransform3D: transformFlip2PI)
-        ]
-        frontFlipAnimation.duration = 3
-        self.frontLabel.layer.add(frontFlipAnimation, forKey: "transform")
-        //        UIView.animate(withDuration: 3.3, animations: {
-        //            var transformFlip = CATransform3DIdentity
-        //            transformFlip.m34 = 1.0 / -200.0
-        //            transformFlip = CATransform3DRotate(transformFlip, 2 * CGFloat.pi, 1, 0, 0)
-        //            self.frontLabel.layer.transform = transformFlip
-        //
-        //            var transformIdentity = CATransform3DIdentity
-        //            transformIdentity.m34 = 1.0 / -200.0
-        //            transformIdentity = CATransform3DRotate(transformIdentity, 2 * CGFloat.pi, 1, 0, 0)
-        //            self.backLabel.layer.transform = transformIdentity
-        //        }) { completed in
-        //            let front = self.frontLabel
-        //            self.frontLabel = self.backLabel
-        //            self.backLabel = front
-        //        }
+        let flipAnimation = CABasicAnimation.init(keyPath: "flipDegree")
+        flipAnimation.fromValue = 0
+        flipAnimation.toValue = 180
+        flipAnimation.duration = 0.4
+        flipAnimation.fillMode = kCAFillModeForwards
+        flipAnimation.addToLayer(layer: self.layer, key: "flipDegree") { finished in
+            let back = self.backLabel
+            self.backLabel = self.frontLabel
+            self.frontLabel = back
+
+            let scoreCardLayer = self.layer as! ScoreCardLayer
+            let backLayer = scoreCardLayer.backLayer
+            scoreCardLayer.backLayer = scoreCardLayer.frontLayer
+            scoreCardLayer.frontLayer = backLayer
+        }
     }
     
     func setScore(score: Int) {
