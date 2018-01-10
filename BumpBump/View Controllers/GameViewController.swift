@@ -37,7 +37,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         let scnView = self.view as! SCNView
         scnView.scene = scene
         scnView.delegate = self
-        scnView.backgroundColor = UIColor.white
+        scnView.backgroundColor = UIColor.lightGray
         scene.rootNode.castsShadow = true
         game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width /  self.view.frame.size.height))
         game.startGame()
