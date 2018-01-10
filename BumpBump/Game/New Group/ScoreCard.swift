@@ -85,6 +85,5 @@ class ScoreCard: UIView {
         self.backLabel.text = "\(score)"
         flip()
     }
-    
 }
 
