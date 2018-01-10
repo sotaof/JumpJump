@@ -20,6 +20,9 @@ protocol ScoreControllerDelegate {
 class ScoreController: NSObject {
     var rootNode: SCNNode!
     var player: Player!
+    var newRecordParticleSystem: SCNParticleSystem!
+    
+    private var isNewRecordTriggered: Bool = false
     
     var delegates: HTMulticastDelegate<ScoreControllerDelegate> = HTMulticastDelegate<ScoreControllerDelegate>()
     
@@ -27,6 +30,8 @@ class ScoreController: NSObject {
     init(rootNode: SCNNode, player: Player) {
         self.rootNode = rootNode
         self.player = player
+        
+        newRecordParticleSystem = SCNParticleSystem.init(named: "newrecord", inDirectory: "./")
     }
     
     func addScore(_ scoreAdded: Int) {
@@ -35,6 +40,11 @@ class ScoreController: NSObject {
         }
         self.score += scoreAdded
         doAddScoreEffect(scoreAdded: scoreAdded)
+        
+        if isNewRecord() && !isNewRecordTriggered {
+            doNewRecordEffect()
+            isNewRecordTriggered = true
+        }
     }
     
     func doAddScoreEffect(scoreAdded: Int) {
@@ -49,16 +59,40 @@ class ScoreController: NSObject {
         geometry.materials = [material]
         effectNode.geometry = geometry
         rootNode.addChildNode(effectNode)
-        let billboardConstraint = SCNBillboardConstraint()
-        billboardConstraint.freeAxes = .all
-        effectNode.constraints = [billboardConstraint]
         effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.1, 0)
         
-        let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 1.0, 0), duration: 0.6)
+        let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 0.6, 0), duration: 0.6)
         let fadeAnimation = SCNAction.fadeOut(duration: 0.6)
         let riseFadeAnimation = SCNAction.group([riseAnimation, fadeAnimation])
         effectNode.runAction(riseFadeAnimation) {
             effectNode.removeFromParentNode()
+        }
+    }
+    
+    func doNewRecordEffect() {
+        let effectNode = SCNNode()
+        let geometry = SCNPlane.init(width: 1.0, height: 1.0)
+        let material = SCNMaterial()
+        let numberImage = StringImageGenerator.createImage(string: "New Record", foregroundColor: UIColor.orange, backgroundColor: UIColor.clear, size: CGSize.init(width: 500, height: 500))
+        
+        material.diffuse.contents = numberImage
+        material.blendMode = .alpha
+        
+        geometry.materials = [material]
+        effectNode.geometry = geometry
+        rootNode.addChildNode(effectNode)
+        effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.1, 0)
+        
+        let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 1.0, 0), duration: 0.4)
+        let fadeAnimation = SCNAction.fadeOut(duration: 1.0)
+        let riseFadeAnimation = SCNAction.group([riseAnimation, fadeAnimation])
+        effectNode.runAction(riseFadeAnimation) {
+            effectNode.removeFromParentNode()
+        }
+        
+        player.rootNode().addParticleSystem(newRecordParticleSystem)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.player.rootNode().removeParticleSystem(self.newRecordParticleSystem)
         }
     }
     
@@ -67,6 +101,7 @@ class ScoreController: NSObject {
             delegate.scoreControllerScoreDidChanged(scoreController: self, oldScore: score, newScore: 0)
         }
         self.score = 0
+        self.isNewRecordTriggered = false
     }
     
     func saveScore() {

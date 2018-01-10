@@ -25,6 +25,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     @IBOutlet weak var gameOverPanel: UIView!
     
     var isGameStarted: Bool = false
+    var displayLink: CADisplayLink!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +39,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         scnView.delegate = self
         scnView.backgroundColor = UIColor.white
         scene.rootNode.castsShadow = true
-        if #available(iOS 10.0, *) {
-            scnView.rendersContinuously = true
-        }
         game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width /  self.view.frame.size.height))
         game.startGame()
         setupScoreController()
+        
+        displayLink = CADisplayLink.init(target: self, selector: #selector(update(displayLink:)))
+        displayLink.add(to: RunLoop.main, forMode: .commonModes)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -58,7 +59,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         }
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
+    @objc
+    func update(displayLink: CADisplayLink) {
+        let time = displayLink.timestamp
         if game.gameState == .running {
             var deltaTime = 0.0
             if lastUpdateTime < 0 {
