@@ -10,11 +10,15 @@ import GameKit
 
 class GameCenterManager {
     class func showRankList() {
-        let player = GKLocalPlayer.init()
+        let player = GKLocalPlayer.localPlayer()
         player.authenticateHandler = { (viewController, error) in
             if let vc = viewController {
-                print("auth success")
+                UIApplication.shared.keyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+            } else if (GKLocalPlayer.localPlayer().isAuthenticated){
+                let success = UIAlertController.init(title: "Gamae Center Login", message: "", preferredStyle: UIAlertControllerStyle.alert)
+                UIApplication.shared.keyWindow?.rootViewController?.present(success, animated: true, completion: nil)
             }
         }
     }
 }
+
