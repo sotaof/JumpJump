@@ -13,7 +13,7 @@ import SceneKit
 import GLKit
 import ARKit
 
-class GameViewController: UIViewController, SCNSceneRendererDelegate {
+class GameViewController: UIViewController, SCNSceneRendererDelegate, GameDelegate {
     
     var scene: SCNScene!
     
@@ -25,7 +25,6 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     @IBOutlet weak var gameOverPanel: UIView!
     
     var isGameStarted: Bool = false
-    var displayLink: CADisplayLink!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +36,12 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         let scnView = self.view as! SCNView
         scnView.scene = scene
         scnView.delegate = self
-        scnView.backgroundColor = UIColor.lightGray
+        scnView.backgroundColor = UIColor.init(rgbHex: 0xf9e0f2)
         scene.rootNode.castsShadow = true
         game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width /  self.view.frame.size.height))
+        game.delegates += self
         game.startGame()
         setupScoreController()
-        
-        displayLink = CADisplayLink.init(target: self, selector: #selector(update(displayLink:)))
-        displayLink.add(to: RunLoop.main, forMode: .commonModes)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -59,39 +56,29 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         }
     }
     
-    @objc
-    func update(displayLink: CADisplayLink) {
-        let time = displayLink.timestamp
-        if game.gameState == .running {
-            var deltaTime = 0.0
-            if lastUpdateTime < 0 {
-                lastUpdateTime = time
-            } else {
-                deltaTime = time - lastUpdateTime
-            }
-            lastUpdateTime = time
-            
-            game.update(timeSinceLastUpdate: deltaTime)
-        } else if game.gameState == .over {
-            self.game.gameState = .preparing
-            DispatchQueue.main.async {
-                self.gameOverPanel.isHidden = false
-                if self.game.scoreController.isNewRecord() {
-                    self.newRecordLabel.isHidden = false
-                } else {
-                    self.newRecordLabel.isHidden = true
-                }
-                self.game.scoreController.saveScore()
-            }
-        }
-    }
-    
     @IBAction func continueGameButtonTapped(button: UIButton) {
         gameOverPanel.isHidden = true
         
         if game.gameState == .preparing {
             game.restartGame()
             game.gameState = .running
+        }
+    }
+    
+    func gameDidStart() {
+        
+    }
+    
+    func gameDidOver() {
+        self.game.gameState = .preparing
+        DispatchQueue.main.async {
+            self.gameOverPanel.isHidden = false
+            if self.game.scoreController.isNewRecord() {
+                self.newRecordLabel.isHidden = false
+            } else {
+                self.newRecordLabel.isHidden = true
+            }
+            self.game.scoreController.saveScore()
         }
     }
 }

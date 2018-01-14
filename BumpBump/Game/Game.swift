@@ -13,115 +13,119 @@ enum GameState {
     case over
 }
 
+@objc
+protocol GameDelegate {
+    func gameDidStart()
+    func gameDidOver()
+}
+
 class Game {
     var scene: SCNScene!
     var aspectRatio: Float!
-
+    
     var cameraNode: SCNNode!
-
+    
     var floorNode: SCNNode!
-
+    
     var player: Player!
     
     var gameNode: SCNNode!
-
+    
     var gameState: GameState = .ready
-
+    
+    var displayLink: CADisplayLink!
+    var lastUpdateTime: TimeInterval = 0
+    
+    var delegates: HTMulticastDelegate<GameDelegate> = HTMulticastDelegate<GameDelegate>()
     // Controllers
     var boxController: BoxController!
     var playerController: PlayerController!
     var cameraController: CameraController!
     var inputController: PressInputController!
     var scoreController: ScoreController!
-
+    
     init(scene: SCNScene, aspectRatio: Float) {
         self.scene = scene
         self.aspectRatio = aspectRatio
         self.gameNode = SCNNode()
         self.scene.rootNode.addChildNode(self.gameNode)
-
+        
         setupCamera()
         setupMainScene()
-
+        
         setupBoxController()
         setupPlayerController()
         setupCameraController()
         setupInputController()
         setupScoreController()
+        
+        displayLink = CADisplayLink.init(target: self, selector: #selector(update(displayLink:)))
+        displayLink.add(to: RunLoop.main, forMode: .commonModes)
+    }
+    
+    func enableAutoPlay() {
+        self.playerController.isAutoPlay = true
     }
     
     func syncAspectRatio(_ aspectRatio: Float) {
         self.aspectRatio = aspectRatio
     }
-
+    
     func setupCamera() {
         self.cameraNode = SCNNode()
         self.cameraNode.camera = SCNCamera()
         let perspectiveMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(38), self.aspectRatio, 0.1, 1000)
         self.cameraNode.camera!.projectionTransform = SCNMatrix4FromGLKMatrix4(perspectiveMatrix)
         scene.rootNode.addChildNode(self.cameraNode)
-
+        
         let lookAtMatrix = GLKMatrix4MakeLookAt(-2.6, 3.8, 3.2, 0, 0, 0, 0, 1, 0)
         let cameraTransform = GLKMatrix4Invert(lookAtMatrix, nil)
         cameraNode.transform = SCNMatrix4FromGLKMatrix4(cameraTransform)
     }
-
+    
     func startGame() {
         // 按照依赖次序配置
         boxController.reset()
         playerController.setupEnvironment(boxController: self.boxController, inputController: self.inputController)
         cameraController.setupTarget(player: self.player, boxController: self.boxController)
         self.gameState = .running
+        delegates.invoke { (delegate) in
+            delegate.gameDidStart()
+        }
     }
-
+    
     func restartGame() {
         scoreController.reset()
         boxController.reset()
         playerController.reset()
         cameraController.reset()
     }
-
+    
+    @objc
+    func update(displayLink: CADisplayLink) {
+        let time = displayLink.timestamp
+        if gameState == .running {
+            var deltaTime = 0.0
+            if lastUpdateTime < 0 {
+                lastUpdateTime = time
+            } else {
+                deltaTime = time - lastUpdateTime
+            }
+            lastUpdateTime = time
+            
+            self.update(timeSinceLastUpdate: deltaTime)
+        }
+    }
+    
     func update(timeSinceLastUpdate: TimeInterval) {
         let controllers: [ControllerProtocol] = [inputController, boxController, playerController, cameraController]
         for controller in controllers {
             controller.update(timeSinceLastUpdate: timeSinceLastUpdate)
         }
-
+        
         // tmp code sync floor & player
         let playerPos = player.rootNode().position
         floorNode.position = SCNVector3.init(playerPos.x, floorNode.position.y, playerPos.z)
-
-        // TODO: 优化解耦此处代码堆。。。。
-        let playerCollider = BoxCollider.fromSCNNode(scnNode: player.rootNode())
-        var onTopCheckResult: OnTopCheckResult? = nil
-        for box in self.boxController.boxObjects {
-            let boxCollider = BoxCollider.fromSCNNode(scnNode: box.rootNode())
-            if self.player.isOnGround {
-                var checkResult: OnTopCheckResult = OnTopCheckResult(isOnTop: false, falldownSide: .forward, fallRotationAxis: SCNVector3Zero, distance: 0)
-                if playerCollider.isOnTheTopOfCollider(bottomOne: boxCollider, result: &checkResult, forwardVector: player.jumpForwardVector) == false {
-                    if onTopCheckResult == nil {
-                        onTopCheckResult = checkResult
-                    } else if checkResult.distance < onTopCheckResult!.distance {
-                        onTopCheckResult = checkResult
-                    }
-                } else {
-                    player.state = .landSuccess
-
-                    onTopCheckResult = nil
-                    if let nextBox = self.boxController.nextBox, nextBox === box {
-                        self.boxController.createNextBox()
-                        self.cameraController.updateCamera()
-                        self.scoreController.addScore(1)
-                    }
-                    break
-                }
-            }
-        }
-        if onTopCheckResult != nil {
-            self.player.falldown(onTopCheckResult: onTopCheckResult!)
-            self.player.state = .landFailed
-            self.gameState = .over
-        }
     }
 }
 
@@ -132,7 +136,7 @@ extension Game {
         createLight()
         createPlayer()
     }
-
+    
     func createFloor() {
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.white.cgColor
@@ -149,7 +153,7 @@ extension Game {
         self.gameNode.addChildNode(floorNode)
         floorNode.castsShadow = true
     }
-
+    
     func createLight() {
         // Main light
         let mainLightNode = SCNNode()
@@ -165,15 +169,15 @@ extension Game {
         mainLightNode.light?.shadowColor = UIColor.init(white: 0.0, alpha: 0.15).cgColor
         mainLightNode.rotation = SCNVector4.init(1, -0.4, 0, -Float.pi / 3.3)
         scene.rootNode.addChildNode(mainLightNode)
-
-
+        
+        
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light?.type = .ambient
         ambientLightNode.light?.color = UIColor.init(white: 0.6, alpha: 1.0).cgColor
         scene.rootNode.addChildNode(ambientLightNode)
     }
-
+    
     func createPlayer() {
         player = Player()
         player.addToNode(baseNode: self.gameNode)
@@ -195,9 +199,27 @@ extension Game {
 }
 
 // Player Controller
-extension Game {
+extension Game: PlayerControllerDelegate {
     func setupPlayerController() {
         self.playerController = PlayerController.init(player: self.player)
+        self.playerController.delegates += self
+    }
+    
+    @objc
+    func playerControllerLandSuccess(player: Player, box: BaseBox) {
+        if let nextBox = self.boxController.nextBox, nextBox === box {
+            self.boxController.createNextBox()
+            self.cameraController.updateCamera()
+            self.scoreController.addScore(1)
+        }
+    }
+    
+    @objc
+    func playerControllerLandFailed(player: Player) {
+        self.gameState = .over
+        delegates.invoke { (delegate) in
+            delegate.gameDidOver()
+        }
     }
 }
 
@@ -214,3 +236,4 @@ extension Game {
         self.scoreController = ScoreController.init(rootNode: self.gameNode, player: self.player)
     }
 }
+

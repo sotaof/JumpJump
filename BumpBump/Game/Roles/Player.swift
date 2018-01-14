@@ -14,10 +14,19 @@ enum PlayerState: Int {
     case landFailed
 }
 
-class Player: GameObject {
+@objc
+protocol PlayerDelegate {
+    func playerWillJump()
+    func playerDidLand()
+}
+
+@objc
+class Player: NSObject, GameObject {
+    public var delegates: HTMulticastDelegate<PlayerDelegate> = HTMulticastDelegate<PlayerDelegate>()
+    
     private var scnNode: SCNNode!
     private var prepareJumpParticleSystem: SCNParticleSystem!
-
+    
     // 运动相关
     private var verticalVelocity: Float = 0
     private var horizontalVelocity: Float = 0
@@ -38,7 +47,8 @@ class Player: GameObject {
     public var isOnGround: Bool = false
     public var state: PlayerState = .idle
 
-    init() {
+    override init() {
+        super.init()
         setupGeometryAndNode()
     }
 
@@ -82,6 +92,10 @@ class Player: GameObject {
         if isOnGround {
             scnNode.removeAllParticleSystems()
 
+            self.delegates.invoke({ delegate in
+                delegate.playerWillJump()
+            })
+            
             self.beginJumpVelocity = beginVelocity.vertical
             self.verticalVelocity = beginVelocity.vertical
             self.horizontalVelocity = beginVelocity.horizontal
@@ -90,6 +104,40 @@ class Player: GameObject {
             self.groundY = groundY
             self.isOnGround = false
             self.state = .jumping
+            
+            let halfDuration = abs(beginVelocity.vertical / self.gravity)
+            let horizontalHalfVec = forward * beginVelocity.horizontal * halfDuration
+            let verticalHalfVec = SCNVector3.init(0, 0.5 * abs(self.gravity) * pow(halfDuration, 2.0), 0.0)
+            var currentPosition = self.rootNode().position
+            currentPosition.y = self.groundY
+            let halfVerticalAction = SCNAction.move(to: currentPosition + verticalHalfVec + horizontalHalfVec, duration: TimeInterval(halfDuration))
+            halfVerticalAction.timingMode = .easeOut
+            let anotherHalfVerticalAction = SCNAction.move(by: horizontalHalfVec - verticalHalfVec, duration: TimeInterval(halfDuration))
+            anotherHalfVerticalAction.timingMode = .easeIn
+            let verticalHorizontalAction = SCNAction.sequence([halfVerticalAction, anotherHalfVerticalAction])
+            let rotateAxis = self.jumpRotateAxis()
+            let rotationAction = SCNAction.rotate(by: CGFloat.pi * 2.0, around: rotateAxis, duration: TimeInterval(halfDuration * 2))
+            let finalAction = SCNAction.group([verticalHorizontalAction, rotationAction])
+            self.rootNode().runAction(finalAction, completionHandler: {
+                self.isOnGround = true
+                self.delegates.invoke({ delegate in
+                    delegate.playerDidLand()
+                })
+            })
+        }
+    }
+    
+    func land() {
+        if !isOnGround {
+            let moveDistance = self.groundY - self.rootNode().position.y
+            let landAction = SCNAction.move(by: SCNVector3.init(0, moveDistance, 0), duration: 0.3)
+            landAction.timingMode = .easeIn
+            self.rootNode().runAction(landAction, completionHandler: {
+                self.isOnGround = true
+                self.delegates.invoke({ delegate in
+                    delegate.playerDidLand()
+                })
+            })
         }
     }
 
@@ -111,6 +159,7 @@ class Player: GameObject {
         self.scnNode.position = SCNVector3.init(0.0 , self.groundY + 1.0, 0.0)
         self.scnNode.rotation = SCNVector4.init(0, 0, 1, 0)
         self.isOnGround = false
+        self.land()
     }
 
     private func jumpRotateAxis() -> SCNVector3 {
@@ -122,44 +171,13 @@ class Player: GameObject {
     }
 
     func update(timeSinceLastUpdate: TimeInterval) {
-        if !isOnGround {
-            var position = scnNode.position
-            position += verticalVector * verticalVelocity * Float(timeSinceLastUpdate)
-            position += jumpForwardVector * horizontalVelocity * Float(timeSinceLastUpdate)
-            verticalVelocity += gravity * Float(timeSinceLastUpdate)
-
-            // 只有跳起才能后空翻
-            if beginJumpVelocity > 0 {
-                // FIXME: 此处逻辑基于所有Box的高度时一致的，后期如果Box高度不一致需要修改
-                if verticalVelocity > 0 {
-                    jumpingRotation = 180.0 * (beginJumpVelocity - verticalVelocity) / beginJumpVelocity
-                } else {
-                    jumpingRotation = 180.0 * -verticalVelocity / beginJumpVelocity + 180.0
-                }
-                let rotateAxis = jumpRotateAxis()
-                // TODO: 增加非线性的动画方案， 现在形状是球，所以别转了。。。
-                scnNode.rotation = SCNVector4.init(rotateAxis.x, rotateAxis.y, rotateAxis.z, jumpingRotation / 180.0 * Float.pi)
-                // TODO: 怕自己看不懂，分步骤解答，用于弹跳过程中的伸缩计算，先伸展，然后回到初始状态
-                var scaleFactor = 1.0 - jumpingRotation / 180.0 // -1 ~ 1
-                scaleFactor = abs(scaleFactor) // 1 ~ 0 ~ 1
-                scaleFactor = 1.0 - scaleFactor // 0 ~ 1 ~ 0
-                scnNode.scale = SCNVector3.init(1, scaleFactor * 0.2 + 1.0, 1)
-            }
-
-            if position.y <= groundY && verticalVelocity < 0 {
-                position.y = groundY
-                verticalVelocity = 0
-                horizontalVelocity = 0
-                beginJumpVelocity = 0
-                isOnGround = true
-                scnNode.rotation = SCNVector4.init(1, 0, 0, 0)
-            }
-
-            scnNode.position = position
-        }
     }
 
     func rootNode() -> SCNNode {
         return self.scnNode
+    }
+    
+    func timeInSky(verticalInitVelocity: Float) -> Float {
+        return fabs(verticalInitVelocity / gravity * 2.0)
     }
 }

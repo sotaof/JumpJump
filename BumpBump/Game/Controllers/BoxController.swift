@@ -27,8 +27,8 @@ class BoxController: ControllerProtocol {
     func reset() {
         clearBoxes()
         putPosition = SCNVector3.init(0, 0, 0)
-        currentBox = addBox(direction: nextBoxDirections[0], size: 0.6, nextDistance: 1.0)
-        nextBox = addBox(direction: nextBoxDirections[1], size: 0.6, nextDistance: 1.0)
+        currentBox = addBox(direction: nextBoxDirections[0], size: 0.6, distance: 0.0)
+        nextBox = addBox(direction: nextBoxDirections[0], size: 0.6, distance: 1.0)
     }
 
     func clearBoxes() {
@@ -44,24 +44,24 @@ class BoxController: ControllerProtocol {
 
         // do put box animation
         let originPosition = nextBox!.rootNode().position
-        nextBox!.rootNode().position = SCNVector3.init(originPosition.x, originPosition.y, originPosition.z)
-
-        let keyframeAnimation = CAKeyframeAnimation.init(keyPath: "position.y")
-        keyframeAnimation.keyTimes = [0.0, 0.4, 0.55, 0.7, 0.78, 0.86, 0.94, 1.0]
-        keyframeAnimation.values = [originPosition.y + 2, originPosition.y, originPosition.y + 0.5, originPosition.y, originPosition.y + 0.4, originPosition.y, originPosition.y + 0.14, originPosition.y]
-        keyframeAnimation.duration = 0.4
-        keyframeAnimation.isRemovedOnCompletion = true
-        keyframeAnimation.fillMode = kCAFillModeForwards
-        nextBox!.rootNode().addAnimation(keyframeAnimation, forKey: "position.y")
+        nextBox!.rootNode().position = SCNVector3.init(originPosition.x, originPosition.y + 0.5, originPosition.z)
+        let action = SCNAction.move(to: SCNVector3.init(originPosition.x, originPosition.y, originPosition.z), duration: 0.2)
+        action.timingMode = .easeIn
+        nextBox!.rootNode().runAction(action)
     }
 
-    private func addBox(direction: SCNVector3? = nil, size: Float? = nil, nextDistance: Float? = nil) -> BaseBox? {
+    private func addBox(direction: SCNVector3? = nil, size: Float? = nil, distance: Float? = nil) -> BaseBox? {
         if let parentNode = rootNode {
             let newDirectionIndex = Float(arc4random()) / Float(UInt32.max) * Float(nextBoxDirections.count)
             let newDirection = direction ?? nextBoxDirections[Int(newDirectionIndex)]
-            let boxDistance: Float = nextDistance ?? Float(arc4random()) / Float(UInt32.max) * 1.0 + 0.8
-            let newBox = BaseBox.init(geometry: nil, position: putPosition, size: size)
+            let boxSize = size ?? Float(arc4random()) / Float(UInt32.max) * 0.14 + 0.34
+            let oldBoxHalfSize: Float = self.currentBox != nil ? self.currentBox!.boxSize / 2.0 : Float(0.0)
+            let newBoxHalfSize = boxSize / 2.0
+            
+            let boxDistance: Float = distance ?? Float(arc4random()) / Float(UInt32.max) * 0.5 + oldBoxHalfSize + newBoxHalfSize
             putPosition += newDirection * boxDistance
+            
+            let newBox = BaseBox.init(geometry: nil, position: putPosition, size: boxSize)
             newBox.addToNode(baseNode: parentNode)
             boxObjects.append(newBox)
             return newBox

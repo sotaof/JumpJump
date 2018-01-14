@@ -1,0 +1,6 @@
+framework module HTUIExtensions {
+  umbrella header "HTUIExtensions-umbrella.h"
+
+  export *
+  module * { export * }
+}

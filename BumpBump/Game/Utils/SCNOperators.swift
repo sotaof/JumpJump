@@ -47,4 +47,15 @@ extension SCNVector3 {
         let glkVec3 = SCNVector3ToGLKVector3(self)
         return SCNVector3FromGLKVector3(GLKVector3Normalize(glkVec3))
     }
+    
+    func distance(to: SCNVector3) -> Float {
+        let fromVec3 = SCNVector3ToGLKVector3(self)
+        let toVec3 = SCNVector3ToGLKVector3(to)
+        return GLKVector3Distance(fromVec3, toVec3)
+    }
+    
+    func length() -> Float {
+        let glkVec3 = SCNVector3ToGLKVector3(self)
+        return GLKVector3Length(glkVec3)
+    }
 }

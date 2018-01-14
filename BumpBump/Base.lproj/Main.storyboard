@@ -23,7 +23,7 @@
                         <viewControllerLayoutGuide type="top" id="hlP-nu-Upg"/>
                         <viewControllerLayoutGuide type="bottom" id="9hw-C5-nKj"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="C05-RJ-Kmg">
+                    <view key="view" contentMode="scaleToFill" id="C05-RJ-Kmg" customClass="SCNView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
