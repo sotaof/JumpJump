@@ -21,15 +21,17 @@ class ScoreController: NSObject {
     var rootNode: SCNNode!
     var player: Player!
     var newRecordParticleSystem: SCNParticleSystem!
+    var cameraNode: SCNNode!
     
     private var isNewRecordTriggered: Bool = false
     
     var delegates: HTMulticastDelegate<ScoreControllerDelegate> = HTMulticastDelegate<ScoreControllerDelegate>()
     
     public var score: Int = 0
-    init(rootNode: SCNNode, player: Player) {
+    init(rootNode: SCNNode, player: Player, cameraNode: SCNNode) {
         self.rootNode = rootNode
         self.player = player
+        self.cameraNode = cameraNode
         
         newRecordParticleSystem = SCNParticleSystem.init(named: "newrecord", inDirectory: "./")
     }
@@ -60,6 +62,9 @@ class ScoreController: NSObject {
         effectNode.geometry = geometry
         rootNode.addChildNode(effectNode)
         effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.1, 0)
+        
+        let lookAtConstraint = SCNLookAtConstraint.init(target: self.cameraNode)
+        effectNode.constraints = [lookAtConstraint]
         
         let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 0.6, 0), duration: 0.6)
         let fadeAnimation = SCNAction.fadeOut(duration: 0.6)

@@ -37,12 +37,19 @@ class Game {
     var lastUpdateTime: TimeInterval = 0
     
     var delegates: HTMulticastDelegate<GameDelegate> = HTMulticastDelegate<GameDelegate>()
+    
+    // Auto Play for Demo
+    var isAutoPlay: Bool = false
+    
     // Controllers
     var boxController: BoxController!
     var playerController: PlayerController!
     var cameraController: CameraController!
     var inputController: PressInputController!
     var scoreController: ScoreController!
+    
+    // Hard Level
+    var hardLevel: Int = 0
     
     init(scene: SCNScene, aspectRatio: Float) {
         self.scene = scene
@@ -65,6 +72,7 @@ class Game {
     
     func enableAutoPlay() {
         self.playerController.isAutoPlay = true
+        self.isAutoPlay = true
     }
     
     func syncAspectRatio(_ aspectRatio: Float) {
@@ -210,7 +218,9 @@ extension Game: PlayerControllerDelegate {
         if let nextBox = self.boxController.nextBox, nextBox === box {
             self.boxController.createNextBox()
             self.cameraController.updateCamera()
-            self.scoreController.addScore(1)
+            if self.isAutoPlay {
+                self.scoreController.addScore(1)
+            }
         }
     }
     
@@ -231,9 +241,15 @@ extension Game {
 }
 
 // Score Controller
-extension Game {
+extension Game: ScoreControllerDelegate {
     func setupScoreController() {
-        self.scoreController = ScoreController.init(rootNode: self.gameNode, player: self.player)
+        self.scoreController = ScoreController.init(rootNode: self.gameNode, player: self.player, cameraNode: self.cameraNode)
+        self.scoreController.delegates += self
+    }
+    
+    func scoreControllerScoreDidChanged(scoreController: ScoreController, oldScore: Int, newScore: Int) {
+        self.hardLevel = clamp(newScore / 150, min: 0, max: 10) 
+        self.boxController.hardLevelPercent = Float(self.hardLevel) / 10.0
     }
 }
 

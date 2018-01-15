@@ -9,7 +9,8 @@ import QuartzCore
 class BoxController: ControllerProtocol {
     var boxObjects: [BaseBox] = []
     var putPosition: SCNVector3 = SCNVector3.init(0, 0, 0)
-
+    var outsideDistance: Float = 0
+    
     let nextBoxDirections = [
         SCNVector3.init(1, 0, 0),
         SCNVector3.init(0, 0, -1),
@@ -19,9 +20,12 @@ class BoxController: ControllerProtocol {
 
     public var currentBox: BaseBox?
     public var nextBox: BaseBox?
+    
+    public var hardLevelPercent: Float = 0
 
-    init(rootNode: SCNNode) {
+    init(rootNode: SCNNode, outsideDistance: Float = 2.0) {
         self.rootNode = rootNode
+        self.outsideDistance = outsideDistance
     }
 
     func reset() {
@@ -54,7 +58,7 @@ class BoxController: ControllerProtocol {
         if let parentNode = rootNode {
             let newDirectionIndex = Float(arc4random()) / Float(UInt32.max) * Float(nextBoxDirections.count)
             let newDirection = direction ?? nextBoxDirections[Int(newDirectionIndex)]
-            let boxSize = size ?? Float(arc4random()) / Float(UInt32.max) * 0.14 + 0.34
+            let boxSize = size ?? Float(arc4random()) / Float(UInt32.max) * 0.1 + 0.4 - self.hardLevelPercent * 0.25
             let oldBoxHalfSize: Float = self.currentBox != nil ? self.currentBox!.boxSize / 2.0 : Float(0.0)
             let newBoxHalfSize = boxSize / 2.0
             
@@ -72,6 +76,21 @@ class BoxController: ControllerProtocol {
     func update(timeSinceLastUpdate: TimeInterval) {
         boxObjects.forEach {
             $0.update(timeSinceLastUpdate: timeSinceLastUpdate)
+        }
+        self.removeBoxOutside()
+    }
+    
+    func removeBoxOutside() {
+        if let currentBoxPosition = self.currentBox?.rootNode().position {
+            var boxIndex = self.boxObjects.count - 1
+            repeat {
+                let box = self.boxObjects[boxCount]
+                let deltaPosition = box.rootNode().position - currentBoxPosition
+                if deltaPosition.length() > self.outsideDistance {
+                    self.boxObjects.remove(at: boxIndex)
+                }
+                boxIndex -= 1
+            } while boxIndex >= 0
         }
     }
 }

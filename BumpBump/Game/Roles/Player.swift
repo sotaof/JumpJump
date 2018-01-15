@@ -131,7 +131,8 @@ class Player: NSObject, GameObject {
         if !isOnGround {
             let moveDistance = self.groundY - self.rootNode().position.y
             let landAction = SCNAction.move(by: SCNVector3.init(0, moveDistance, 0), duration: 0.3)
-            landAction.timingMode = .easeIn
+            landAction.timingMode = .linear
+            landAction.timingFunction = SpringTimingFunction
             self.rootNode().runAction(landAction, completionHandler: {
                 self.isOnGround = true
                 self.delegates.invoke({ delegate in

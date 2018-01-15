@@ -18,6 +18,7 @@
 		3DF8C140200A38A400190073 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF8C13F200A38A400190073 /* GameKit.framework */; };
 		3DF8C142200A38CA00190073 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8C141200A38CA00190073 /* GameCenterManager.swift */; };
 		76965F74FF5ED566C40D6D55 /* Pods_BumpBump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7E438A53D6AC45AD7BBCA3 /* Pods_BumpBump.framework */; };
+		8E1DB39E200CE52400A58114 /* SpringTimingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1DB39D200CE52400A58114 /* SpringTimingFunction.swift */; };
 		8E74DB572006445B00C5A121 /* newrecord.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 8E74DB562006445B00C5A121 /* newrecord.scnp */; };
 		8E94753C2004FE7E0030854B /* ScoreCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94753B2004FE7E0030854B /* ScoreCard.swift */; };
 		8EE2F5291FF5FF4400085BCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2F5281FF5FF4400085BCF /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		3DF8C141200A38CA00190073 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		86C3C7D0AE8C1B847F2922D6 /* Pods-BumpBump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumpBump.release.xcconfig"; path = "Pods/Target Support Files/Pods-BumpBump/Pods-BumpBump.release.xcconfig"; sourceTree = "<group>"; };
 		8D7E438A53D6AC45AD7BBCA3 /* Pods_BumpBump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BumpBump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E1DB39D200CE52400A58114 /* SpringTimingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringTimingFunction.swift; sourceTree = "<group>"; };
 		8E74DB562006445B00C5A121 /* newrecord.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = newrecord.scnp; sourceTree = "<group>"; };
 		8E94753B2004FE7E0030854B /* ScoreCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCard.swift; sourceTree = "<group>"; };
 		8EE2F5251FF5FF4400085BCF /* BumpBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumpBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +214,7 @@
 				E642CE8621007F60C056AD6E /* UIColorExtension.swift */,
 				3DF8C1362000A5D400190073 /* HTMulticastDelegate.swift */,
 				3DF8C141200A38CA00190073 /* GameCenterManager.swift */,
+				8E1DB39D200CE52400A58114 /* SpringTimingFunction.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				3D75A83C1FFD2A9800B93F3C /* StringImageGenerator.swift in Sources */,
 				E642C35AC971E968970A704D /* PressInputController.swift in Sources */,
 				E642CE5E13D19EC70C607C73 /* CameraController.swift in Sources */,
+				8E1DB39E200CE52400A58114 /* SpringTimingFunction.swift in Sources */,
 				E642C2D1ABD4ACB6207710A8 /* BoxController.swift in Sources */,
 				3DF8C1372000A5D400190073 /* HTMulticastDelegate.swift in Sources */,
 				E642C62B7B456977C6242AAD /* Game.swift in Sources */,
