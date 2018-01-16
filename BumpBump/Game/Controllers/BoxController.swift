@@ -48,9 +48,10 @@ class BoxController: ControllerProtocol {
 
         // do put box animation
         let originPosition = nextBox!.rootNode().position
-        nextBox!.rootNode().position = SCNVector3.init(originPosition.x, originPosition.y + 0.5, originPosition.z)
-        let action = SCNAction.move(to: SCNVector3.init(originPosition.x, originPosition.y, originPosition.z), duration: 0.2)
-        action.timingMode = .easeIn
+        nextBox!.rootNode().position = SCNVector3.init(originPosition.x, originPosition.y + 1.0, originPosition.z)
+        let action = SCNAction.move(to: SCNVector3.init(originPosition.x, originPosition.y, originPosition.z), duration: 0.3)
+        action.timingMode = .linear
+        action.timingFunction = SpringTimingFunction
         nextBox!.rootNode().runAction(action)
     }
 
@@ -84,7 +85,7 @@ class BoxController: ControllerProtocol {
         if let currentBoxPosition = self.currentBox?.rootNode().position {
             var boxIndex = self.boxObjects.count - 1
             repeat {
-                let box = self.boxObjects[boxCount]
+                let box = self.boxObjects[boxIndex]
                 let deltaPosition = box.rootNode().position - currentBoxPosition
                 if deltaPosition.length() > self.outsideDistance {
                     self.boxObjects.remove(at: boxIndex)

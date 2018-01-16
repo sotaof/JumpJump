@@ -33,6 +33,10 @@ class BaseBox: NSObject, GameObject {
             self.geometry = geometry
         }
     }
+    
+    deinit {
+        self.rootNode().removeFromParentNode()
+    }
 
     func setupGeometryAndNode() {
         let material = SCNMaterial()

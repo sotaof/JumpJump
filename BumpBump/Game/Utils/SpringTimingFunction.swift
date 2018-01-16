@@ -8,8 +8,8 @@
 
 import SceneKit
 
-let SpringTimingFunction = { time -> Float in
-    let factor = time * time
+let SpringTimingFunction: (Float) -> Float = { time -> Float in
+    let factor = time * time * time
     return 1.0 - pow(cos(factor * 12.0), 2.0) * (1.0 - time)
 }
 

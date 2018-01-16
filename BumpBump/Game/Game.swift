@@ -248,7 +248,8 @@ extension Game: ScoreControllerDelegate {
     }
     
     func scoreControllerScoreDidChanged(scoreController: ScoreController, oldScore: Int, newScore: Int) {
-        self.hardLevel = clamp(newScore / 150, min: 0, max: 10) 
+        let level = Int(newScore / 150)
+        self.hardLevel = level > 10 ? 10 : level
         self.boxController.hardLevelPercent = Float(self.hardLevel) / 10.0
     }
 }
