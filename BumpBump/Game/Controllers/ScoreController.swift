@@ -64,7 +64,7 @@ class ScoreController: NSObject {
         effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.1, 0)
         
         let lookAtConstraint = SCNLookAtConstraint.init(target: self.cameraNode)
-        effectNode.constraints = [lookAtConstraint]
+//        effectNode.constraints = [lookAtConstraint]
         
         let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 0.6, 0), duration: 0.6)
         let fadeAnimation = SCNAction.fadeOut(duration: 0.6)

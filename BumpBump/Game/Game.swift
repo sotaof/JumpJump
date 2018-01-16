@@ -218,8 +218,8 @@ extension Game: PlayerControllerDelegate {
         if let nextBox = self.boxController.nextBox, nextBox === box {
             self.boxController.createNextBox()
             self.cameraController.updateCamera()
-            if self.isAutoPlay {
-                self.scoreController.addScore(1)
+            if !self.isAutoPlay {
+                self.scoreController.addScore(100)
             }
         }
     }

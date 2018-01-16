@@ -23,7 +23,7 @@ class BoxController: ControllerProtocol {
     
     public var hardLevelPercent: Float = 0
 
-    init(rootNode: SCNNode, outsideDistance: Float = 2.0) {
+    init(rootNode: SCNNode, outsideDistance: Float = 4.0) {
         self.rootNode = rootNode
         self.outsideDistance = outsideDistance
     }
