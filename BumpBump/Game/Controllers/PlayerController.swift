@@ -79,7 +79,15 @@ extension PlayerController: PressInputControllerDelegate {
     }
     
     func pressInputControllerDidEnd(controller: PressInputController, inputFactorBeforeEnd: Float) {
-        boxController.currentBox?.rootNode().scale = SCNVector3.init(1, 1.0, 1)
+        let initialScale = boxController.currentBox?.rootNode().scale
+        let duration = 0.25
+        let boxRecoverAction = SCNAction.customAction(duration: duration) { (node, time) in
+            let percent = Float(time) / Float(duration)
+            node.scale = SCNVector3.init(1, (1.0 - initialScale!.y) * percent + initialScale!.y, 1.0)
+        }
+        boxRecoverAction.timingMode = .linear
+        boxRecoverAction.timingFunction = SpringTimingFunction
+        boxController.currentBox?.rootNode().runAction(boxRecoverAction)
         player.rootNode().scale = SCNVector3.init(1, 1.0, 1)
         
         let newGroundY = self.boxController.nextBox?.topY() ?? 0

@@ -105,20 +105,20 @@ class Player: NSObject, GameObject {
             self.isOnGround = false
             self.state = .jumping
             
-            let halfDuration = abs(beginVelocity.vertical / self.gravity)
-            let horizontalHalfVec = forward * beginVelocity.horizontal * halfDuration
-            let verticalHalfVec = SCNVector3.init(0, 0.5 * abs(self.gravity) * pow(halfDuration, 2.0), 0.0)
-            var currentPosition = self.rootNode().position
-            currentPosition.y = self.groundY
-            let halfVerticalAction = SCNAction.move(to: currentPosition + verticalHalfVec + horizontalHalfVec, duration: TimeInterval(halfDuration))
-            halfVerticalAction.timingMode = .easeOut
-            let anotherHalfVerticalAction = SCNAction.move(by: horizontalHalfVec - verticalHalfVec, duration: TimeInterval(halfDuration))
-            anotherHalfVerticalAction.timingMode = .easeIn
-            let verticalHorizontalAction = SCNAction.sequence([halfVerticalAction, anotherHalfVerticalAction])
+            let halfDuration = TimeInterval(abs(beginVelocity.vertical / self.gravity))
+            let playerStartPosition = self.rootNode().position
             let rotateAxis = self.jumpRotateAxis()
-            let rotationAction = SCNAction.rotate(by: CGFloat.pi * 2.0, around: rotateAxis, duration: TimeInterval(halfDuration * 2))
-            let finalAction = SCNAction.group([verticalHorizontalAction, rotationAction])
-            self.rootNode().runAction(finalAction, completionHandler: {
+            let jumpAction = SCNAction.customAction(duration: halfDuration * 2, action: { (node, time) in
+                var newPosition = playerStartPosition + forward * beginVelocity.horizontal * Float(time)
+                let verticalOffset = beginVelocity.vertical * Float(time)  + 0.5 * self.gravity * pow(Float(time), 2)
+                newPosition += SCNVector3.init(0, verticalOffset, 0.0)
+                if TimeInterval(time) >= halfDuration * 2 {
+                    newPosition.y = groundY
+                }
+                node.position = newPosition
+                node.rotation = SCNVector4.init(rotateAxis.x, rotateAxis.y, rotateAxis.z, Float.pi * Float(time) / Float(halfDuration))
+            })
+            self.rootNode().runAction(jumpAction, completionHandler: {
                 self.isOnGround = true
                 self.delegates.invoke({ delegate in
                     delegate.playerDidLand()
