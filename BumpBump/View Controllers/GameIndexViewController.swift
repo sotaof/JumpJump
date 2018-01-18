@@ -26,7 +26,7 @@ class GameIndexViewController: UIViewController {
             scnView.scene = scene
             scene.rootNode.castsShadow = true
             DispatchQueue.main.async {
-                self.game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width /  self.view.frame.size.height))
+                self.game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width / self.view.frame.size.height))
                 self.game.enableAutoPlay()
                 self.game.startGame()
             }
@@ -38,6 +38,8 @@ class GameIndexViewController: UIViewController {
     }
     
     @IBAction func playButtonTapped() {
+        self.game.stopGame()
+        self.game = nil
         self.performSegue(withIdentifier: "playGame", sender: nil)
     }
 }

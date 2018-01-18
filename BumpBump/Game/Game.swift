@@ -102,6 +102,14 @@ class Game {
         }
     }
     
+    func stopGame() {
+        displayLink.invalidate()
+        self.gameState = .preparing
+        delegates.invoke { (delegate) in
+            delegate.gameDidOver()
+        }
+    }
+    
     func restartGame() {
         scoreController.reset()
         boxController.reset()
