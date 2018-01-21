@@ -51,7 +51,7 @@ class ScoreController: NSObject {
     
     func doAddScoreEffect(scoreAdded: Int) {
         let effectNode = SCNNode()
-        let geometry = SCNPlane.init(width: 0.2, height: 0.2)
+        let geometry = SCNPlane.init(width: 0.22, height: 0.22)
         let material = SCNMaterial()
         let numberImage = StringImageGenerator.createImage(string: "+\(scoreAdded)", foregroundColor: UIColor.black, backgroundColor: UIColor.clear, size: CGSize.init(width: 100, height: 100))
         
@@ -63,12 +63,11 @@ class ScoreController: NSObject {
         rootNode.addChildNode(effectNode)
         effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.1, 0)
         
-        let lookAtConstraint = SCNLookAtConstraint.init(target: self.cameraNode)
-//        effectNode.constraints = [lookAtConstraint]
-        
         let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 0.6, 0), duration: 0.6)
         let fadeAnimation = SCNAction.fadeOut(duration: 0.6)
         let riseFadeAnimation = SCNAction.group([riseAnimation, fadeAnimation])
+        let billbordConstraint = SCNBillboardConstraint()
+        effectNode.constraints = [billbordConstraint]
         effectNode.runAction(riseFadeAnimation) {
             effectNode.removeFromParentNode()
         }
@@ -91,6 +90,8 @@ class ScoreController: NSObject {
         let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 1.0, 0), duration: 0.4)
         let fadeAnimation = SCNAction.fadeOut(duration: 1.0)
         let riseFadeAnimation = SCNAction.group([riseAnimation, fadeAnimation])
+        let billbordConstraint = SCNBillboardConstraint()
+        effectNode.constraints = [billbordConstraint]
         effectNode.runAction(riseFadeAnimation) {
             effectNode.removeFromParentNode()
         }

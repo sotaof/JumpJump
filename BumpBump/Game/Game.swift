@@ -227,7 +227,7 @@ extension Game: PlayerControllerDelegate {
             self.boxController.createNextBox()
             self.cameraController.updateCamera()
             if !self.isAutoPlay {
-                self.scoreController.addScore(100)
+                self.scoreController.addScore(1)
             }
         }
     }

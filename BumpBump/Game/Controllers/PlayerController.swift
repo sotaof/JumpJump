@@ -91,7 +91,7 @@ extension PlayerController: PressInputControllerDelegate {
         player.rootNode().scale = SCNVector3.init(1, 1.0, 1)
         
         let newGroundY = self.boxController.nextBox?.topY() ?? 0
-        self.player.jump(beginVelocity: (vertical: 8.5, horizontal: 5.0 * inputFactorBeforeEnd), forward: jumpForwardVector(), groundY: newGroundY)
+        self.player.jump(beginVelocity: (vertical: 8.0, horizontal: 6.0 * inputFactorBeforeEnd), forward: jumpForwardVector(), groundY: newGroundY)
     }
     
 }
@@ -99,13 +99,17 @@ extension PlayerController: PressInputControllerDelegate {
 extension PlayerController: PlayerDelegate {
     func playerDidLand() {
         self.checkPlayerCollisionWithBox()
-        if player.state == .landSuccess && isAutoPlay {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                let newGroundY = self.boxController.nextBox?.topY() ?? 0
-                let jumpTime: Float = self.player.timeInSky(verticalInitVelocity: 8)
-                let distance: Float = self.jumpDistance()
-                self.player.jump(beginVelocity: (vertical: 8, horizontal: Float(distance / jumpTime)), forward: self.jumpForwardVector(), groundY: newGroundY)
-            })
+        if player.state == .landSuccess {
+            let forward = self.jumpForwardVector()
+            self.player.faceTo(forward: forward)
+            if isAutoPlay {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    let newGroundY = self.boxController.nextBox?.topY() ?? 0
+                    let jumpTime: Float = self.player.timeInSky(verticalInitVelocity: 8)
+                    let distance: Float = self.jumpDistance()
+                    self.player.jump(beginVelocity: (vertical: 8, horizontal: Float(distance / jumpTime)), forward: self.jumpForwardVector(), groundY: newGroundY)
+                })
+            }
         }
     }
     
