@@ -197,11 +197,15 @@ class Player: NSObject, GameObject {
     func falldown(onTopCheckResult: OnTopCheckResult) {
         self.scnNode.rotation = SCNVector4.init(onTopCheckResult.fallRotationAxis.x, onTopCheckResult.fallRotationAxis.y, onTopCheckResult.fallRotationAxis.z, 0)
         SCNTransaction.begin()
-        SCNTransaction.animationDuration = 1.0
+        SCNTransaction.animationDuration = 0.5
         let position = self.scnNode.position
         let minz = (self.rootNode().boundingBox.max - self.rootNode().boundingBox.min).z
         self.scnNode.position = SCNVector3.init(position.x, minz, position.z)
-        self.scnNode.rotation = SCNVector4.init(onTopCheckResult.fallRotationAxis.x, onTopCheckResult.fallRotationAxis.y, onTopCheckResult.fallRotationAxis.z,  Float(onTopCheckResult.falldownSide.rawValue) * 90.0 / 180.0 * Float.pi)
+        if onTopCheckResult.falldownSide != .sideward {
+            self.scnNode.rotation = SCNVector4.init(onTopCheckResult.fallRotationAxis.x, onTopCheckResult.fallRotationAxis.y, onTopCheckResult.fallRotationAxis.z,  Float(onTopCheckResult.falldownSide.rawValue) * 90.0 / 180.0 * Float.pi)
+        } else {
+            self.scnNode.rotation = SCNVector4.init(onTopCheckResult.fallRotationAxis.x, onTopCheckResult.fallRotationAxis.y, onTopCheckResult.fallRotationAxis.z, 90.0 / 180.0 * Float.pi)
+        }
         SCNTransaction.commit()
     }
     

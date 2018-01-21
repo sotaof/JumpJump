@@ -61,14 +61,16 @@ class ScoreController: NSObject {
         geometry.materials = [material]
         effectNode.geometry = geometry
         rootNode.addChildNode(effectNode)
-        effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.1, 0)
+        effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.4, 0)
         
-        let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 0.6, 0), duration: 0.6)
-        let fadeAnimation = SCNAction.fadeOut(duration: 0.6)
-        let riseFadeAnimation = SCNAction.group([riseAnimation, fadeAnimation])
-        let billbordConstraint = SCNBillboardConstraint()
-        effectNode.constraints = [billbordConstraint]
-        effectNode.runAction(riseFadeAnimation) {
+        let startPosition = effectNode.position
+        let raiseAnimation = SCNAction.customAction(duration: 0.6) { (node, time) in
+            node.position = startPosition + SCNVector3.init(0, 0.6, 0) * Float(time / 0.6)
+            BillboardUtil.constraintWithYLock(source: node, target: self.cameraNode)
+        }
+        raiseAnimation.timingMode = .easeOut
+        
+        effectNode.runAction(raiseAnimation) {
             effectNode.removeFromParentNode()
         }
     }
@@ -85,14 +87,16 @@ class ScoreController: NSObject {
         geometry.materials = [material]
         effectNode.geometry = geometry
         rootNode.addChildNode(effectNode)
-        effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.1, 0)
+        effectNode.position = self.player.rootNode().position + SCNVector3.init(0, 0.8, 0)
         
-        let riseAnimation = SCNAction.move(by: SCNVector3.init(0, 1.0, 0), duration: 0.4)
-        let fadeAnimation = SCNAction.fadeOut(duration: 1.0)
-        let riseFadeAnimation = SCNAction.group([riseAnimation, fadeAnimation])
-        let billbordConstraint = SCNBillboardConstraint()
-        effectNode.constraints = [billbordConstraint]
-        effectNode.runAction(riseFadeAnimation) {
+        let startPosition = effectNode.position
+        let raiseAnimation = SCNAction.customAction(duration: 0.5) { (node, time) in
+            node.position = startPosition + SCNVector3.init(0, 0.3, 0) * Float(time / 0.5)
+            BillboardUtil.constraintWithYLock(source: node, target: self.cameraNode)
+        }
+        raiseAnimation.timingMode = .easeOut
+        
+        effectNode.runAction(raiseAnimation) {
             effectNode.removeFromParentNode()
         }
         

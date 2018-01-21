@@ -10,8 +10,10 @@ import SceneKit
 import GLKit
 
 class BillboardUtil {
-    class func constraint(source: SCNNode, target: SCNNode) {
-        let faceVector = (target.position - source.position).normalize()
+    class func constraintWithYLock(source: SCNNode, target: SCNNode) {
+        var faceVector = target.position - source.position
+        faceVector.y = 0.0
+        faceVector = faceVector.normalize()
         let sourceOriginFaceVector = SCNVector3.init(0, 0, -1)
         let glkFaceVector = SCNVector3ToGLKVector3(faceVector)
         let glkSourceOriginFaceVector = SCNVector3ToGLKVector3(sourceOriginFaceVector)
