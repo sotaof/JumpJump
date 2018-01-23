@@ -155,11 +155,11 @@ extension Game {
     
     func createFloor() {
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.white.cgColor
-        material.lightingModel = .constant
+        material.diffuse.contents = UIColor.orange.cgColor
+//        material.lightingModel = .constant
         material.writesToDepthBuffer = true
         if #available(iOS 11.0, *) {
-            material.colorBufferWriteMask = []
+//            material.colorBufferWriteMask = []
         }
         
         let floor = SCNPlane.init(width: 20, height: 20)

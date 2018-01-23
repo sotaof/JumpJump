@@ -4,6 +4,8 @@
 //
 
 import SceneKit
+import ModelIO
+import SceneKit.ModelIO
 
 class BaseBox: NSObject, GameObject {
     var geometry: SCNGeometry!
@@ -20,7 +22,7 @@ class BaseBox: NSObject, GameObject {
         UIColor.init(rgbHex: 0xD6DBB2),
         UIColor.init(rgbHex: 0xF76454),
         UIColor.init(rgbHex: 0xE3D985),
-    ]
+        ]
     
     init(geometry: SCNGeometry? = nil, position: SCNVector3? = nil, size: Float? = nil) {
         super.init()
@@ -37,38 +39,47 @@ class BaseBox: NSObject, GameObject {
     deinit {
         self.rootNode().removeFromParentNode()
     }
-
+    
     func setupGeometryAndNode() {
         let material = SCNMaterial()
         let colorIndex = Float(arc4random()) / Float(UInt32.max) * Float(colors.count - 1)
         material.diffuse.contents = colors[Int(colorIndex)].cgColor
+        let fileNames = ["bump_mac_fix", "desktop_mac_fix", "cylinder_mac_fix", "box_mac_fix"]
+        let geometryType = Int(Float(arc4random()) / Float(UInt32.max) * Float(fileNames.count))
 
-        let geometryType = Float(arc4random()) / Float(UInt32.max)
-        if geometryType > 0.5 {
-            self.geometry = SCNBox.init(width: CGFloat(self.boxSize), height: 0.3, length: CGFloat(self.boxSize), chamferRadius: 0)
-        } else {
-            self.geometry = SCNCylinder.init(radius: CGFloat(self.boxSize / 2.0), height: 0.3)
+        material.isDoubleSided = true
+        self.scnNode = SCNNode.init()
+        if let geometryNode = loadNodeFromObjFile(fileName: fileNames[geometryType])  {
+            let originSize = geometryNode.boundingBox.max - geometryNode.boundingBox.min
+            geometryNode.geometry?.materials = [material]
+            geometryNode.scale = SCNVector3.init(self.boxSize / originSize.x, 0.3 / originSize.y, self.boxSize / originSize.z)
+            self.geometry = geometryNode.geometry
+            self.scnNode.addChildNode(geometryNode)
+            self.scnNode.position = self.boxPosition
         }
-        
-        self.geometry.materials = [material]
-
-        self.scnNode = SCNNode.init(geometry: self.geometry)
-        self.scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
-        self.scnNode.position = self.boxPosition
     }
-
+    
+    func loadNodeFromObjFile(fileName: String) -> SCNNode? {
+        if let assetUrl = Bundle.main.url(forResource: fileName, withExtension: ".obj") {
+            let asset = MDLAsset.init(url: assetUrl)
+            return SCNNode.init(mdlObject: asset.object(at: 0))
+        }
+        return nil
+    }
+    
     func update(timeSinceLastUpdate: TimeInterval) {
-
+        
     }
-
+    
     func rootNode() -> SCNNode {
         return self.scnNode
     }
-
+    
     func topY() -> Float {
-        let topY =  geometry.boundingBox.max.y - geometry.boundingBox.min.y + self.scnNode.position.y
+        let topY =  0.3 + self.scnNode.position.y
         return topY
     }
-
-
+    
+    
 }
+
