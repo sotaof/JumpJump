@@ -42,10 +42,11 @@ class BaseBox: NSObject, GameObject {
     
     func setupGeometryAndNode() {
         let material = SCNMaterial()
-        let colorIndex = Float(arc4random()) / Float(UInt32.max) * Float(colors.count - 1)
-        material.diffuse.contents = colors[Int(colorIndex)].cgColor
-        let fileNames = ["bump_mac_fix", "desktop_mac_fix", "cylinder_mac_fix", "box_mac_fix"]
+//        let colorIndex = Float(arc4random()) / Float(UInt32.max) * Float(colors.count - 1)
+        let fileNames = ["bump", "desktop"]//, "cylinder", "box"]
+        let diffuseImage = ["base1.png", "base4.png"]//, "base4.png", "base4.png"]
         let geometryType = Int(Float(arc4random()) / Float(UInt32.max) * Float(fileNames.count))
+        material.diffuse.contents = UIImage.init(named: diffuseImage[geometryType])
 
         material.isDoubleSided = true
         self.scnNode = SCNNode.init()
