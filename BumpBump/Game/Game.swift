@@ -155,7 +155,7 @@ extension Game {
     
     func createFloor() {
         let material = SCNMaterial()
-        material.diffuse.contents = UIColor.white.cgColor
+        material.diffuse.contents = UIColor.randomColorWithFixSB(saturation: 0.09, brightness: 0.81).cgColor
         material.lightingModel = .constant
         material.writesToDepthBuffer = true
         if #available(iOS 11.0, *) {
@@ -256,9 +256,13 @@ extension Game: ScoreControllerDelegate {
     }
     
     func scoreControllerScoreDidChanged(scoreController: ScoreController, oldScore: Int, newScore: Int) {
-        let level = Int(newScore / 150)
+        let level = Int(newScore / 50)
         self.hardLevel = level > 10 ? 10 : level
         self.boxController.hardLevelPercent = Float(self.hardLevel) / 10.0
+//        SCNTransaction.begin()
+        self.floorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.randomColorWithFixSB(saturation: 0.09, brightness: 0.81).cgColor
+//        SCNTransaction.commit()
     }
 }
+
 

@@ -23,7 +23,7 @@ class CameraController: ControllerProtocol {
 
     private var relativePosition: SCNVector3!
     private var animationElapsedTime: TimeInterval = 0
-    private var animationDuration: TimeInterval = 0.5
+    private var animationDuration: TimeInterval = 0.7
 
     init(cameraNode: SCNNode) {
         self.cameraNode = cameraNode

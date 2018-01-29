@@ -36,7 +36,7 @@ class Player: NSObject, GameObject {
     private var verticalVector: SCNVector3 = SCNVector3.init(0, 1, 0)
     private var forwardVector: SCNVector3 = SCNVector3.init(1, 0, 0)
     
-    public var gravity: Float = -40
+    public var gravity: Float = -35
     
     // 跳跃相关
     private var jumpingRotation: Float = 0

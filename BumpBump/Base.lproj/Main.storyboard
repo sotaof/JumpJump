@@ -98,10 +98,14 @@
                         <viewControllerLayoutGuide type="top" id="oDh-Ul-bIa"/>
                         <viewControllerLayoutGuide type="bottom" id="hBG-4C-NNm"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iLz-F3-DmL" customClass="SCNView">
+                    <view key="view" contentMode="scaleToFill" id="iLz-F3-DmL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZ2-NY-0H3" customClass="SCNView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGS-YH-cTa" customClass="ScoreCard" customModule="BumpBump" customModuleProvider="target">
                                 <rect key="frame" x="60" y="50" width="200" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -154,10 +158,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pZ2-NY-0H3" firstAttribute="top" secondItem="iLz-F3-DmL" secondAttribute="top" id="1wv-8c-rkF"/>
+                            <constraint firstItem="pZ2-NY-0H3" firstAttribute="leading" secondItem="iLz-F3-DmL" secondAttribute="leading" id="5SJ-pu-U25"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" id="77U-Ac-WZQ"/>
                             <constraint firstItem="AGS-YH-cTa" firstAttribute="centerX" secondItem="iLz-F3-DmL" secondAttribute="centerX" id="Bqi-0O-4Vh"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="trailing" secondItem="iLz-F3-DmL" secondAttribute="trailing" id="Ckk-iA-ZiB"/>
                             <constraint firstItem="AGS-YH-cTa" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" constant="30" id="Vhk-Xr-0wX"/>
+                            <constraint firstAttribute="bottom" secondItem="pZ2-NY-0H3" secondAttribute="bottom" id="bHQ-Qh-hRu"/>
+                            <constraint firstAttribute="trailing" secondItem="pZ2-NY-0H3" secondAttribute="trailing" id="qXg-u6-eBF"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="bottom" secondItem="hBG-4C-NNm" secondAttribute="top" id="tDb-eT-7Aq"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="leading" secondItem="iLz-F3-DmL" secondAttribute="leading" id="v3h-F4-8BG"/>
                         </constraints>
@@ -165,6 +173,7 @@
                     <connections>
                         <outlet property="gameOverPanel" destination="92r-LM-ibt" id="p4S-oR-zws"/>
                         <outlet property="newRecordLabel" destination="Cc2-4X-sTF" id="EPg-yj-e3J"/>
+                        <outlet property="scnView" destination="pZ2-NY-0H3" id="ZXj-eH-2x4"/>
                         <outlet property="scoreLabel" destination="AGS-YH-cTa" id="cce-G1-r6x"/>
                     </connections>
                 </viewController>

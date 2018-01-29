@@ -31,8 +31,8 @@ class BoxController: ControllerProtocol {
     func reset() {
         clearBoxes()
         putPosition = SCNVector3.init(0, 0, 0)
-        currentBox = addBox(direction: nextBoxDirections[0], size: 0.6, distance: 0.0)
-        nextBox = addBox(direction: nextBoxDirections[0], size: 0.6, distance: 1.0)
+        currentBox = addBox(direction: nextBoxDirections[0], size: 0.55, distance: 0.0)
+        nextBox = addBox(direction: nextBoxDirections[0], size: 0.55, distance: 1.0)
     }
 
     func clearBoxes() {
@@ -48,7 +48,7 @@ class BoxController: ControllerProtocol {
 
         // do put box animation
         let originPosition = nextBox!.rootNode().position
-        nextBox!.rootNode().position = SCNVector3.init(originPosition.x, originPosition.y + 1.0, originPosition.z)
+        nextBox!.rootNode().position = SCNVector3.init(originPosition.x, originPosition.y + 1.4, originPosition.z)
         let action = SCNAction.move(to: SCNVector3.init(originPosition.x, originPosition.y, originPosition.z), duration: 0.3)
         action.timingMode = .linear
         action.timingFunction = SpringTimingFunction
@@ -59,11 +59,11 @@ class BoxController: ControllerProtocol {
         if let parentNode = rootNode {
             let newDirectionIndex = Float(arc4random()) / Float(UInt32.max) * Float(nextBoxDirections.count)
             let newDirection = direction ?? nextBoxDirections[Int(newDirectionIndex)]
-            let boxSize = size ?? Float(arc4random()) / Float(UInt32.max) * 0.1 + 0.4 - self.hardLevelPercent * 0.25
+            let boxSize = size ?? 0.55 - self.hardLevelPercent * 0.35
             let oldBoxHalfSize: Float = self.currentBox != nil ? self.currentBox!.boxSize / 2.0 : Float(0.0)
             let newBoxHalfSize = boxSize / 2.0
             
-            let boxDistance: Float = distance ?? Float(arc4random()) / Float(UInt32.max) * 0.5 + oldBoxHalfSize + newBoxHalfSize
+            let boxDistance: Float = distance ?? Float(arc4random()) / Float(UInt32.max) * 0.7 + oldBoxHalfSize + newBoxHalfSize
             putPosition += newDirection * boxDistance
             
             let newBox = BaseBox.init(geometry: nil, position: putPosition, size: boxSize)

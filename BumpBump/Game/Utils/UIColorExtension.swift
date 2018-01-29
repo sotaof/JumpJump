@@ -12,4 +12,9 @@ extension UIColor {
         let b = CGFloat(arc4random()) / CGFloat(UInt32.max)
         return UIColor.init(red: r, green: g, blue: b, alpha: 1.0)
     }
+    
+    static func randomColorWithFixSB(saturation: CGFloat, brightness: CGFloat) -> UIColor {
+        let hue = CGFloat(arc4random()) / CGFloat(UInt32.max)
+        return UIColor.init(hue: hue, saturation: saturation, brightness: brightness, alpha: 1.0);
+    }
 }

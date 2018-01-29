@@ -16,11 +16,13 @@ import ARKit
 class GameViewController: UIViewController, SCNSceneRendererDelegate, GameDelegate {
     
     var scene: SCNScene!
+    var bgLayer: CAGradientLayer!
     
     var lastUpdateTime: TimeInterval = -1
     
     var game: Game!
     @IBOutlet weak var scoreLabel: ScoreCard!
+    @IBOutlet weak var scnView: SCNView!
     @IBOutlet weak var newRecordLabel: UILabel!
     @IBOutlet weak var gameOverPanel: UIView!
     
@@ -28,16 +30,20 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate, GameDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         gameOverPanel.isHidden = true
         
         scene = SCNScene()
         
-        let scnView = self.view as! SCNView
         scnView.scene = scene
         scnView.delegate = self
-        scnView.backgroundColor = UIColor.init(rgbHex: 0xf9e0f2)
+        scnView.backgroundColor = UIColor.white
+        
+        bgLayer = CAGradientLayer()
+        bgLayer.frame = self.view.bounds
+        
         scene.rootNode.castsShadow = true
+        scene.background.contents = bgLayer
         game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width /  self.view.frame.size.height))
         game.delegates += self
         game.startGame()
@@ -92,12 +98,21 @@ extension GameViewController: ScoreControllerDelegate {
     func scoreControllerScoreDidChanged(scoreController: ScoreController, oldScore: Int, newScore: Int) {
         DispatchQueue.main.async {
             self.scoreLabel.setScore(score: newScore)
+            if newScore % 15 == 0 {
+                UIView.animate(withDuration: 2, animations: {
+                    let hue = CGFloat(arc4random()) / CGFloat(UInt32.max)
+                    self.bgLayer.colors = [
+                        UIColor.init(hue: hue, saturation: 0.14, brightness: 0.85, alpha: 1.0).cgColor,
+                        UIColor.init(hue: hue, saturation: 0.07, brightness: 1.0, alpha: 1.0).cgColor,
+                    ]
+                })
+            }
         }
     }
 }
 
 //extension GameViewController: ARSCNViewDelegate {
-//    
+//
 //    func startAR() {
 //        // Create a session configuration
 //        let configuration = ARWorldTrackingConfiguration()
@@ -106,7 +121,7 @@ extension GameViewController: ScoreControllerDelegate {
 //        // Run the view's session
 //        sceneView.session.run(configuration)
 //    }
-//    
+//
 //    // Override to create and configure nodes for anchors added to the view's session.
 //    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
 ////        let node = SCNNode()
@@ -115,27 +130,27 @@ extension GameViewController: ScoreControllerDelegate {
 //        game.gameNode.transform = SCNMatrix4Mult(SCNMatrix4MakeScale(0.2, 0.2, 0.2), SCNMatrix4(anchor.transform))
 //        return nil
 //    }
-//    
+//
 //    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
 ////        node.transform = SCNMatrix4(anchor.transform)
 //        game.gameNode.transform = SCNMatrix4Mult(SCNMatrix4MakeScale(0.2, 0.2, 0.2), SCNMatrix4(anchor.transform))
 //    }
-//    
+//
 //    func session(_ session: ARSession, didFailWithError error: Error) {
 //        // Present an error message to the user
-//        
+//
 //    }
-//    
+//
 //    func sessionWasInterrupted(_ session: ARSession) {
 //        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-//        
+//
 //    }
-//    
+//
 //    func sessionInterruptionEnded(_ session: ARSession) {
 //        // Reset tracking and/or remove existing anchors if consistent tracking is required
-//        
+//
 //    }
-//    
+//
 //    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
 //        print(camera.trackingState)
 //    }

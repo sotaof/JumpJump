@@ -80,7 +80,7 @@ extension PlayerController: PressInputControllerDelegate {
     
     func pressInputControllerDidEnd(controller: PressInputController, inputFactorBeforeEnd: Float) {
         let initialScale = boxController.currentBox?.rootNode().scale
-        let duration = 0.25
+        let duration = 0.35
         let boxRecoverAction = SCNAction.customAction(duration: duration) { (node, time) in
             let percent = Float(time) / Float(duration)
             node.scale = SCNVector3.init(1, (1.0 - initialScale!.y) * percent + initialScale!.y, 1.0)
@@ -91,7 +91,7 @@ extension PlayerController: PressInputControllerDelegate {
         player.rootNode().scale = SCNVector3.init(1, 1.0, 1)
         
         let newGroundY = self.boxController.nextBox?.topY() ?? 0
-        self.player.jump(beginVelocity: (vertical: 8.0, horizontal: 6.0 * inputFactorBeforeEnd), forward: jumpForwardVector(), groundY: newGroundY)
+        self.player.jump(beginVelocity: (vertical: 8.0, horizontal: 5.0 * inputFactorBeforeEnd), forward: jumpForwardVector(), groundY: newGroundY)
     }
     
 }
