@@ -47,7 +47,7 @@ class GameIndexViewController: UIViewController {
                 self.game.startGame()
                 self.view.insertSubview(scnView, at: self.view.subviews.count - 2)
                 scnView.alpha = 0.0
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                     scnView.alpha = 1.0
                 })
             }
