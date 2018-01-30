@@ -115,6 +115,9 @@ class Game {
         boxController.reset()
         playerController.reset()
         cameraController.reset()
+        delegates.invoke { (delegate) in
+            delegate.gameDidStart()
+        }
     }
     
     @objc

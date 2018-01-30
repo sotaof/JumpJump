@@ -14,11 +14,11 @@ class GameIndexViewController: UIViewController {
     
     var game: Game!
     var bgLayer:CAGradientLayer!
-    @IBOutlet weak var scnView: SCNView!
     var backgroundColors: [CGColor]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         let hue = CGFloat(arc4random()) / CGFloat(UInt32.max)
         backgroundColors = [
             UIColor.init(hue: hue, saturation: 0.14, brightness: 0.85, alpha: 1.0).cgColor,
@@ -27,22 +27,29 @@ class GameIndexViewController: UIViewController {
         self.bgLayer = CAGradientLayer()
         self.bgLayer.frame = self.view.bounds
         self.bgLayer.colors = self.backgroundColors
-        self.view.layer.insertSublayer(bgLayer, below: scnView.layer)
+        self.view.layer.insertSublayer(self.bgLayer, at: 0)
 
         createDemoScene()
     }
     
     func createDemoScene() {
         DispatchQueue.global().async {
-            let scene = SCNScene()
-            self.scnView.scene = scene
-            scene.rootNode.castsShadow = true
             DispatchQueue.main.async {
+                let scene = SCNScene()
+                let scnView = SCNView()
+                scnView.frame = self.view.frame
+                scnView.scene = scene
+                scene.rootNode.castsShadow = true
                 scene.background.contents = self.bgLayer
 
                 self.game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width / self.view.frame.size.height))
                 self.game.enableAutoPlay()
                 self.game.startGame()
+                self.view.insertSubview(scnView, at: self.view.subviews.count - 2)
+                scnView.alpha = 0.0
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                    scnView.alpha = 1.0
+                })
             }
         }
     }
