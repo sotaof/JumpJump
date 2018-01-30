@@ -48,6 +48,7 @@ class GameIndexViewController: UIViewController {
     }
     
     @IBAction func playARButtonTapped() {
+        GameCenterManager.showRankList()
     }
     
     @IBAction func playButtonTapped() {

@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0fbc18e6-cd88-4103-a7f8-7d4afdc38ab8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/Base.lproj/Main.storyboard" afterPath="$PROJECT_DIR$/BumpBump/Base.lproj/Main.storyboard" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/Game/Controllers/ScoreController.swift" afterPath="$PROJECT_DIR$/BumpBump/Game/Controllers/ScoreController.swift" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/Game/New Group/ScoreCard.swift" afterPath="$PROJECT_DIR$/BumpBump/Game/New Group/ScoreCard.swift" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/Game/Utils/GameCenterManager.swift" afterPath="$PROJECT_DIR$/BumpBump/Game/Utils/GameCenterManager.swift" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/Resources/prepare.scnp" afterPath="$PROJECT_DIR$/BumpBump/Resources/prepare.scnp" />
       <change beforePath="$PROJECT_DIR$/BumpBump/View Controllers/GameIndexViewController.swift" afterPath="$PROJECT_DIR$/BumpBump/View Controllers/GameIndexViewController.swift" />
-      <change beforePath="$PROJECT_DIR$/BumpBump/View Controllers/GameViewController.swift" afterPath="$PROJECT_DIR$/BumpBump/View Controllers/GameViewController.swift" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -108,8 +101,8 @@
       <file leaf-file-name="GameIndexViewController.swift" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BumpBump/View Controllers/GameIndexViewController.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="423">
+              <caret line="50" column="40" lean-forward="false" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
               <folding>
                 <element signature="e#145#160#0" expanded="true" />
               </folding>
@@ -312,12 +305,12 @@
       <workItem from="1515831384420" duration="4000" />
       <workItem from="1515845513833" duration="256000" />
       <workItem from="1515845854426" duration="2040000" />
-      <workItem from="1517277824969" duration="7794000" />
+      <workItem from="1517277824969" duration="7891000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59091000" />
+    <option name="totallyTimeSpent" value="59188000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1436" height="877" extended-state="6" />
@@ -327,9 +320,9 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10997442" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.035805628" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.035805628" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12276215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38618925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.204947" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Tail" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -693,8 +686,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BumpBump/View Controllers/GameIndexViewController.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="423">
+          <caret line="50" column="40" lean-forward="false" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
           <folding>
             <element signature="e#145#160#0" expanded="true" />
           </folding>
