@@ -53,7 +53,7 @@ class ScoreController: NSObject {
         let effectNode = SCNNode()
         let geometry = SCNPlane.init(width: 0.22, height: 0.22)
         let material = SCNMaterial()
-        let numberImage = StringImageGenerator.createImage(string: "+\(scoreAdded)", foregroundColor: UIColor.black, backgroundColor: UIColor.clear, size: CGSize.init(width: 100, height: 100))
+        let numberImage = StringImageGenerator.createImage(string: "+\(scoreAdded)", foregroundColor: UIColor.init(rgbHex: 0x10AEFF), backgroundColor: UIColor.clear, size: CGSize.init(width: 100, height: 100))
         
         material.diffuse.contents = numberImage
         material.blendMode = .alpha

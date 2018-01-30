@@ -80,6 +80,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate, GameDelega
         DispatchQueue.main.async {
             self.gameOverPanel.isHidden = false
             if self.game.scoreController.isNewRecord() {
+                GameCenterManager.reportScore(scoreValue: self.game.scoreController.score) { error in
+
+                }
                 self.newRecordLabel.isHidden = false
             } else {
                 self.newRecordLabel.isHidden = true

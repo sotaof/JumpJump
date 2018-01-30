@@ -43,7 +43,9 @@ class ScoreCard: UIView {
     func setupLabelApperance(label: UILabel) {
         label.font = UIFont.init(name: "Upheaval TT (BRK)", size: 65)
         label.textAlignment = .center
-        label.textColor = UIColor.black
+        label.shadowColor = UIColor.init(rgbHex: 0xffffff)
+        label.textColor = UIColor.init(rgbHex: 0x10AEFF)
+        label.shadowOffset = CGSize.init(width: 2.5, height: 2.5)
         label.backgroundColor = UIColor.clear
     }
 
