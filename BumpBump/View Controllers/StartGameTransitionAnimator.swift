@@ -7,7 +7,7 @@ import UIKit
 
 class StartGameTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.4
+        return 0.3
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -19,7 +19,7 @@ class StartGameTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioni
         toVC.view.alpha = 0.0
         fromVC.view.alpha = 1.0
         containerView.addSubview(toVC.view)
-        UIView.animate(withDuration: 0.4, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             toVC.view.alpha = 1.0
             fromVC.view.alpha = 0.0
         }) { flag in

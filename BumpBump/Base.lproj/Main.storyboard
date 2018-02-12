@@ -76,6 +76,10 @@
                                         <state key="normal" title="RANK LIST">
                                             <color key="titleShadowColor" red="0.062745098040000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" red="0.054901960784313725" green="0.58823529411764708" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" red="0.062745098040000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="playARButtonTapped" destination="Kwp-7J-4Vh" eventType="touchUpInside" id="v1O-3x-Ib2"/>
                                         </connections>
@@ -122,7 +126,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="eV2-mN-Vbi"/>
                     <connections>
-                        <segue destination="BV1-FR-VrT" kind="show" identifier="playGame" id="A2v-5x-sk9"/>
+                        <outlet property="panelBgView" destination="JhK-I1-vfu" id="bN0-Va-cOB"/>
+                        <outlet property="playButton" destination="7rq-eW-ls7" id="1cu-aT-VGi"/>
+                        <outlet property="rankButton" destination="Qo5-IR-YU3" id="d0O-zL-a9u"/>
+                        <outlet property="titleFirstLabel" destination="TjN-k1-7V9" id="iUS-e9-g8d"/>
+                        <outlet property="titleSecondLabel" destination="MaH-Rw-hx8" id="818-yn-LUN"/>
+                        <segue destination="BV1-FR-VrT" kind="showDetail" identifier="playGame" id="A2v-5x-sk9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mKh-WZ-2Ve" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,14 +155,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGS-YH-cTa" customClass="ScoreCard" customModule="BumpBump" customModuleProvider="target">
-                                <rect key="frame" x="60" y="94" width="200" height="50"/>
+                                <rect key="frame" x="60" y="50" width="200" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5Eb-46-8se"/>
                                     <constraint firstAttribute="width" constant="200" id="bsx-GZ-N3f"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92r-LM-ibt" userLabel="GameFinishPanel">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92r-LM-ibt" userLabel="GameFinishPanel" customClass="RestartPanel" customModule="BumpBump" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-ay-z5H">
@@ -168,6 +177,9 @@
                                         <state key="normal" title="play again">
                                             <color key="titleColor" red="0.062745098040000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" red="0.22745098039215686" green="0.49411764705882355" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="25"/>
@@ -177,13 +189,6 @@
                                             <action selector="continueGameButtonTappedWithButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="5wb-ED-JGd"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_record.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ftb-9v-nCC">
-                                        <rect key="frame" x="126.5" y="100" width="67" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="67" id="513-K8-j8p"/>
-                                            <constraint firstAttribute="height" constant="50" id="hcF-pD-wYC"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyi-Rh-N9d">
                                         <rect key="frame" x="113" y="160" width="94.5" height="58.5"/>
                                         <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="65"/>
@@ -196,6 +201,10 @@
                                         <size key="titleShadowOffset" width="2.5" height="2.5"/>
                                         <state key="normal" title="RANK LIST">
                                             <color key="titleShadowColor" red="0.062745098040000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" red="0.054901960784313725" green="0.58823529411764708" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" red="0.062745098040000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="playARButtonTapped" destination="Kwp-7J-4Vh" eventType="touchUpInside" id="kUq-Y3-r4D"/>
@@ -210,6 +219,13 @@
                                         <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <size key="shadowOffset" width="2.5" height="2.5"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_record.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ftb-9v-nCC">
+                                        <rect key="frame" x="126" y="100" width="67" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="67" id="513-K8-j8p"/>
+                                            <constraint firstAttribute="height" constant="50" id="hcF-pD-wYC"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -224,6 +240,13 @@
                                     <constraint firstItem="fSg-ay-z5H" firstAttribute="centerX" secondItem="92r-LM-ibt" secondAttribute="centerX" id="pH0-SS-URl"/>
                                     <constraint firstItem="UOS-5L-558" firstAttribute="centerX" secondItem="jyi-Rh-N9d" secondAttribute="centerX" id="uW6-8V-j6W"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="finalScoreIconView" destination="UOS-5L-558" id="L3N-xF-0SA"/>
+                                    <outlet property="finalScoreLabel" destination="jyi-Rh-N9d" id="3nJ-CG-Zhv"/>
+                                    <outlet property="newRecordView" destination="Ftb-9v-nCC" id="Je6-tl-yET"/>
+                                    <outlet property="playButton" destination="fSg-ay-z5H" id="R9p-4L-Lew"/>
+                                    <outlet property="rankButton" destination="z9b-yK-euC" id="oIG-U1-sta"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -241,12 +264,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="finalScoreIconView" destination="UOS-5L-558" id="MdG-Mt-zZV"/>
-                        <outlet property="finalScoreLabel" destination="jyi-Rh-N9d" id="RY8-zn-YyB"/>
                         <outlet property="gameOverPanel" destination="92r-LM-ibt" id="p4S-oR-zws"/>
-                        <outlet property="newRecordView" destination="Ftb-9v-nCC" id="3pM-Fm-pzO"/>
                         <outlet property="scnView" destination="pZ2-NY-0H3" id="ZXj-eH-2x4"/>
-                        <outlet property="scoreLabel" destination="AGS-YH-cTa" id="cce-G1-r6x"/>
+                        <outlet property="scoreLabel" destination="AGS-YH-cTa" id="7HM-Sh-Ccn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

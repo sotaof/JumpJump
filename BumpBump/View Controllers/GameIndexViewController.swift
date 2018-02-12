@@ -17,6 +17,12 @@ class GameIndexViewController: UIViewController, UIViewControllerTransitioningDe
     var backgroundColors: [CGColor]!
     let startGameAnimator: StartGameTransitionAnimator = StartGameTransitionAnimator()
 
+    @IBOutlet weak var titleFirstLabel: UIButton!
+    @IBOutlet weak var titleSecondLabel: UIButton!
+    @IBOutlet weak var rankButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var panelBgView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -63,6 +69,7 @@ class GameIndexViewController: UIViewController, UIViewControllerTransitioningDe
         self.game.stopGame()
         self.game = nil
         self.performSegue(withIdentifier: "playGame", sender: nil)
+        self.startGameAnimation()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,6 +78,17 @@ class GameIndexViewController: UIViewController, UIViewControllerTransitioningDe
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return startGameAnimator
+    }
+
+    public func startGameAnimation() {
+        UIView.animate(withDuration: 0.3) { () -> Void in
+            let offset = UIScreen.main.bounds.size.height / 2.0
+            self.titleFirstLabel.transform = CGAffineTransform.init(translationX: 0, y: -offset)
+            self.titleSecondLabel.transform = CGAffineTransform.init(translationX: 0, y: -offset)
+            self.rankButton.transform = CGAffineTransform.init(translationX: 0, y: offset)
+            self.playButton.transform = CGAffineTransform.init(translationX: 0, y: offset)
+            self.panelBgView.alpha = 0.0
+        }
     }
 }
 

@@ -106,7 +106,14 @@ class GameCenterManager {
                     delegate.completedHandler = nil
                 }
                 gameCenterVC.gameCenterDelegate = delegate
-                UIApplication.shared.keyWindow?.rootViewController?.present(gameCenterVC, animated: true)
+                if let nav = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController {
+                    if let presentedVC = nav.topViewController?.presentedViewController {
+                        presentedVC.present(gameCenterVC, animated: true)
+                    } else {
+                        nav.topViewController?.present(gameCenterVC, animated: true)
+                    }
+                }
+
             }
         }
     }
