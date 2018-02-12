@@ -27,6 +27,7 @@
 		3DF8C1372000A5D400190073 /* HTMulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8C1362000A5D400190073 /* HTMulticastDelegate.swift */; };
 		3DF8C140200A38A400190073 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF8C13F200A38A400190073 /* GameKit.framework */; };
 		3DF8C142200A38CA00190073 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8C141200A38CA00190073 /* GameCenterManager.swift */; };
+		64AB85262D6852280CC54EA2 /* StartGameTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB83C623EFA1D14E0913CA /* StartGameTransitionAnimator.swift */; };
 		76965F74FF5ED566C40D6D55 /* Pods_BumpBump.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D7E438A53D6AC45AD7BBCA3 /* Pods_BumpBump.framework */; };
 		8E1DB39E200CE52400A58114 /* SpringTimingFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1DB39D200CE52400A58114 /* SpringTimingFunction.swift */; };
 		8E74DB572006445B00C5A121 /* newrecord.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 8E74DB562006445B00C5A121 /* newrecord.scnp */; };
@@ -89,6 +90,7 @@
 		3DF8C1362000A5D400190073 /* HTMulticastDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMulticastDelegate.swift; sourceTree = "<group>"; };
 		3DF8C13F200A38A400190073 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		3DF8C141200A38CA00190073 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
+		64AB83C623EFA1D14E0913CA /* StartGameTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGameTransitionAnimator.swift; sourceTree = "<group>"; };
 		86C3C7D0AE8C1B847F2922D6 /* Pods-BumpBump.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumpBump.release.xcconfig"; path = "Pods/Target Support Files/Pods-BumpBump/Pods-BumpBump.release.xcconfig"; sourceTree = "<group>"; };
 		8D7E438A53D6AC45AD7BBCA3 /* Pods_BumpBump.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BumpBump.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1DB39D200CE52400A58114 /* SpringTimingFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringTimingFunction.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				8EE2F52C1FF5FF4400085BCF /* GameViewController.swift */,
 				3DF8C1311FFFC5EE00190073 /* GameIndexViewController.swift */,
 				3DF8C1341FFFC76F00190073 /* GameARViewController.swift */,
+				64AB83C623EFA1D14E0913CA /* StartGameTransitionAnimator.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -561,6 +564,7 @@
 				3DF8C1321FFFC5EE00190073 /* GameIndexViewController.swift in Sources */,
 				E642CDAF5932FE2FD881B5A7 /* ControllerProtocol.swift in Sources */,
 				E642CE1F227FB9AB8187FDA5 /* UIColorExtension.swift in Sources */,
+				64AB85262D6852280CC54EA2 /* StartGameTransitionAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

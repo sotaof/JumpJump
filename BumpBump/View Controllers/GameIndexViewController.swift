@@ -10,12 +10,13 @@ import SceneKit
 import QuartzCore
 import HTUIExtensions
 
-class GameIndexViewController: UIViewController {
+class GameIndexViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
     var game: Game!
     var bgLayer:CAGradientLayer!
     @IBOutlet weak var scnView: SCNView!
     var backgroundColors: [CGColor]!
+    let startGameAnimator: StartGameTransitionAnimator = StartGameTransitionAnimator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,14 @@ class GameIndexViewController: UIViewController {
         self.game.stopGame()
         self.game = nil
         self.performSegue(withIdentifier: "playGame", sender: nil)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        segue.destination.transitioningDelegate = self
+    }
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return startGameAnimator
     }
 }
 
