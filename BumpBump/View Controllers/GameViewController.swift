@@ -23,10 +23,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate, GameDelega
     var game: Game!
     @IBOutlet weak var scoreLabel: ScoreCard!
     @IBOutlet weak var scnView: SCNView!
-    @IBOutlet weak var newRecordView: UIView!
-    @IBOutlet weak var gameOverPanel: UIView!
-    @IBOutlet weak var finalScoreLabel: UILabel!
-    @IBOutlet weak var finalScoreIconView: UILabel!
+    @IBOutlet weak var gameOverPanel: RestartPanel!
     
     var isGameStarted: Bool = false
     
@@ -70,7 +67,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate, GameDelega
     }
     
     @IBAction func continueGameButtonTapped(button: UIButton) {
-        gameOverPanel.isHidden = true
+        self.gameOverPanel.hide()
         
         if game.gameState == .preparing {
             game.restartGame()
@@ -85,17 +82,17 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate, GameDelega
     func gameDidOver() {
         self.game.gameState = .preparing
         DispatchQueue.main.async {
-            self.gameOverPanel.isHidden = false
-            self.finalScoreLabel.text = "\(self.game.scoreController.score)"
+            self.gameOverPanel.show()
+            self.gameOverPanel.finalScoreLabel.text = "\(self.game.scoreController.score)"
             if self.game.scoreController.isNewRecord() {
                 GameCenterManager.reportScore(scoreValue: self.game.scoreController.score) { error in
                     
                 }
-                self.newRecordView.isHidden = false
-                self.finalScoreIconView.isHidden = true
+                self.gameOverPanel.newRecordView.isHidden = false
+                self.gameOverPanel.finalScoreIconView.isHidden = true
             } else {
-                self.newRecordView.isHidden = true
-                self.finalScoreIconView.isHidden = false
+                self.gameOverPanel.newRecordView.isHidden = true
+                self.gameOverPanel.finalScoreIconView.isHidden = false
             }
             self.scoreLabel.isHidden = true
             self.game.scoreController.saveScore()
