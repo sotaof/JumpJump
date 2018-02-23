@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0871562024A74500FBA63F /* desktop.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0871552024A74500FBA63F /* desktop.obj */; };
+		3D0871582024A78200FBA63F /* base2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0871572024A78200FBA63F /* base2.png */; };
+		3D08715A2024AB9C00FBA63F /* base3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0871592024AB9C00FBA63F /* base3.png */; };
 		3D6EA2FB2018C7E500BC76BA /* base4.uvw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F32018C7E400BC76BA /* base4.uvw.png */; };
 		3D6EA2FC2018C7E500BC76BA /* bump.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F42018C7E400BC76BA /* bump.obj */; };
 		3D6EA2FD2018C7E500BC76BA /* base1.uvw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F52018C7E400BC76BA /* base1.uvw.png */; };
 		3D6EA2FE2018C7E500BC76BA /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F62018C7E400BC76BA /* box.obj */; };
-		3D6EA2FF2018C7E500BC76BA /* desktop.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F72018C7E500BC76BA /* desktop.obj */; };
 		3D6EA3002018C7E500BC76BA /* base2.uvw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F82018C7E500BC76BA /* base2.uvw.png */; };
 		3D6EA3012018C7E500BC76BA /* cylinder.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F92018C7E500BC76BA /* cylinder.obj */; };
 		3D6EA3022018C7E500BC76BA /* base3.uvw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2FA2018C7E500BC76BA /* base3.uvw.png */; };
@@ -70,11 +72,13 @@
 		09C1CAE9BEDD31ED0308F326 /* Pods-BumpBumpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumpBumpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BumpBumpTests/Pods-BumpBumpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		138E4F5EC1CCC0ACD2D1F87E /* Pods-BumpBump.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BumpBump.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BumpBump/Pods-BumpBump.debug.xcconfig"; sourceTree = "<group>"; };
 		1F482F7EE79EBEA18358090E /* Pods_BumpBumpTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BumpBumpTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D0871552024A74500FBA63F /* desktop.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = desktop.obj; sourceTree = "<group>"; };
+		3D0871572024A78200FBA63F /* base2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base2.png; sourceTree = "<group>"; };
+		3D0871592024AB9C00FBA63F /* base3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base3.png; sourceTree = "<group>"; };
 		3D6EA2F32018C7E400BC76BA /* base4.uvw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base4.uvw.png; sourceTree = "<group>"; };
 		3D6EA2F42018C7E400BC76BA /* bump.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bump.obj; sourceTree = "<group>"; };
 		3D6EA2F52018C7E400BC76BA /* base1.uvw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base1.uvw.png; sourceTree = "<group>"; };
 		3D6EA2F62018C7E400BC76BA /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = box.obj; sourceTree = "<group>"; };
-		3D6EA2F72018C7E500BC76BA /* desktop.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = desktop.obj; sourceTree = "<group>"; };
 		3D6EA2F82018C7E500BC76BA /* base2.uvw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base2.uvw.png; sourceTree = "<group>"; };
 		3D6EA2F92018C7E500BC76BA /* cylinder.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cylinder.obj; sourceTree = "<group>"; };
 		3D6EA2FA2018C7E500BC76BA /* base3.uvw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base3.uvw.png; sourceTree = "<group>"; };
@@ -146,6 +150,9 @@
 		3D6EA2DC201785F700BC76BA /* 3dmodels */ = {
 			isa = PBXGroup;
 			children = (
+				3D0871592024AB9C00FBA63F /* base3.png */,
+				3D0871572024A78200FBA63F /* base2.png */,
+				3D0871552024A74500FBA63F /* desktop.obj */,
 				3D6EA3052018CCC300BC76BA /* base1.png */,
 				3D6EA3032018C9EE00BC76BA /* base4.png */,
 				3D6EA2F52018C7E400BC76BA /* base1.uvw.png */,
@@ -155,7 +162,6 @@
 				3D6EA2F62018C7E400BC76BA /* box.obj */,
 				3D6EA2F42018C7E400BC76BA /* bump.obj */,
 				3D6EA2F92018C7E500BC76BA /* cylinder.obj */,
-				3D6EA2F72018C7E500BC76BA /* desktop.obj */,
 			);
 			path = 3dmodels;
 			sourceTree = "<group>";
@@ -411,14 +417,16 @@
 				8E74DB572006445B00C5A121 /* newrecord.scnp in Resources */,
 				3D6EA3112020C82400BC76BA /* new_record.png in Resources */,
 				8EE2F5321FF5FF4400085BCF /* Assets.xcassets in Resources */,
+				3D08715A2024AB9C00FBA63F /* base3.png in Resources */,
+				3D0871582024A78200FBA63F /* base2.png in Resources */,
 				3D75A8331FF965B400B93F3C /* spark.png in Resources */,
 				8EE2F5301FF5FF4400085BCF /* Main.storyboard in Resources */,
+				3D0871562024A74500FBA63F /* desktop.obj in Resources */,
 				8EE2F54B1FFB4E6600085BCF /* upheavtt.ttf in Resources */,
 				3D75A82F1FF9653A00B93F3C /* star.png in Resources */,
 				3D6EA2FE2018C7E500BC76BA /* box.obj in Resources */,
 				3D6EA2FD2018C7E500BC76BA /* base1.uvw.png in Resources */,
 				3D6EA3002018C7E500BC76BA /* base2.uvw.png in Resources */,
-				3D6EA2FF2018C7E500BC76BA /* desktop.obj in Resources */,
 				3D6EA3022018C7E500BC76BA /* base3.uvw.png in Resources */,
 				3D75A8321FF965B400B93F3C /* prepare.scnp in Resources */,
 			);
@@ -718,6 +726,7 @@
 			baseConfigurationReference = 138E4F5EC1CCC0ACD2D1F87E /* Pods-BumpBump.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P48344HVQL;
 				INFOPLIST_FILE = BumpBump/Info.plist;
@@ -725,6 +734,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.ocean.jumpjump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -735,6 +745,7 @@
 			baseConfigurationReference = 86C3C7D0AE8C1B847F2922D6 /* Pods-BumpBump.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P48344HVQL;
 				INFOPLIST_FILE = BumpBump/Info.plist;
@@ -742,6 +753,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.ocean.jumpjump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -7,6 +7,8 @@ import SceneKit
 import ModelIO
 import SceneKit.ModelIO
 
+let boxHeight: Float = 0.35
+
 class BaseBox: NSObject, GameObject {
     var geometry: SCNGeometry!
     var scnNode: SCNNode!
@@ -43,8 +45,8 @@ class BaseBox: NSObject, GameObject {
     func setupGeometryAndNode() {
         let material = SCNMaterial()
 //        let colorIndex = Float(arc4random()) / Float(UInt32.max) * Float(colors.count - 1)
-        let fileNames = ["bump", "desktop"]//, "cylinder", "box"]
-        let diffuseImage = ["base1.png", "base4.png"]//, "base4.png", "base4.png"]
+        let fileNames = ["bump", "desktop", "box", "cylinder"]
+        let diffuseImage = ["base1.png", "base4.png", "base2.png", "base3.png"]//, "base4.png", "base4.png"]
         let geometryType = Int(Float(arc4random()) / Float(UInt32.max) * Float(fileNames.count))
         material.diffuse.contents = UIImage.init(named: diffuseImage[geometryType])
 
@@ -53,7 +55,7 @@ class BaseBox: NSObject, GameObject {
         if let geometryNode = loadNodeFromObjFile(fileName: fileNames[geometryType])  {
             let originSize = geometryNode.boundingBox.max - geometryNode.boundingBox.min
             geometryNode.geometry?.materials = [material]
-            geometryNode.scale = SCNVector3.init(self.boxSize / originSize.x, 0.3 / originSize.y, self.boxSize / originSize.z)
+            geometryNode.scale = SCNVector3.init(self.boxSize / originSize.x, boxHeight / originSize.y, self.boxSize / originSize.z)
             self.geometry = geometryNode.geometry
             self.scnNode.addChildNode(geometryNode)
             self.scnNode.position = self.boxPosition
@@ -77,7 +79,7 @@ class BaseBox: NSObject, GameObject {
     }
     
     func topY() -> Float {
-        let topY =  0.3 + self.scnNode.position.y
+        let topY =  boxHeight + self.scnNode.position.y
         return topY
     }
     
