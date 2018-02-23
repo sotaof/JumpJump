@@ -185,7 +185,7 @@ extension Game {
         #if !(arch(i386) || arch(x86_64))
             mainLightNode.light?.shadowMode = .deferred
         #endif
-        mainLightNode.light?.shadowColor = UIColor.init(white: 0.0, alpha: 0.15).cgColor
+        mainLightNode.light?.shadowColor = UIColor.init(white: 0.0, alpha: 0.5).cgColor
         mainLightNode.rotation = SCNVector4.init(1, -0.4, 0, -Float.pi / 3.3)
         scene.rootNode.addChildNode(mainLightNode)
         

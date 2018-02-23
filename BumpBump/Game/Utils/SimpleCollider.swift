@@ -65,6 +65,7 @@ struct BoxCollider {
             if topRect.intersects(bottomRect) == false {
                 result.falldownSide = .sideward
                 result.fallRotationAxis = forwardVector.normalize()
+                result.distance = Float.greatestFiniteMagnitude
             } else {
                 let bottomOneTopCenter = bottomOne.topCenterPoint()
                 var bottomOneTopToTopOneBottomVec = topOneBottomCenter - bottomOneTopCenter
@@ -86,7 +87,7 @@ struct BoxCollider {
     static func fromSCNNode(scnNode: SCNNode) -> BoxCollider {
         let min = scnNode.boundingBox.min + scnNode.position
         let max = scnNode.boundingBox.max + scnNode.position
-        var collider = BoxCollider(boundingBoxMin: min, boundingBoxMax: max)
+        let collider = BoxCollider(boundingBoxMin: min, boundingBoxMax: max)
         return collider
     }
 }

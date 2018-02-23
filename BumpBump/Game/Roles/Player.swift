@@ -101,7 +101,9 @@ class Player: NSObject, GameObject {
         
         scnNode = SCNNode.init()
         scnNode.addChildNode(playerRootNode)
-        scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
+        let bounds = bodyNode.boundingBox
+        let halfHeight = (bounds.max.y - bounds.min.y) / 2.0
+        scnNode.pivot = SCNMatrix4MakeTranslation(0, -halfHeight, 0)
         scnNode.castsShadow = true
         
         if let particleSystem = SCNParticleSystem.init(named: "prepare", inDirectory: "./") {
@@ -199,7 +201,7 @@ class Player: NSObject, GameObject {
         SCNTransaction.begin()
         SCNTransaction.animationDuration = 0.5
         let position = self.scnNode.position
-        let minz = (self.rootNode().boundingBox.max - self.rootNode().boundingBox.min).z
+        let minz = (self.rootNode().boundingBox.max - self.rootNode().boundingBox.min).z / 2.0
         self.scnNode.position = SCNVector3.init(position.x, minz, position.z)
         if onTopCheckResult.falldownSide != .sideward {
             self.scnNode.rotation = SCNVector4.init(onTopCheckResult.fallRotationAxis.x, onTopCheckResult.fallRotationAxis.y, onTopCheckResult.fallRotationAxis.z,  Float(onTopCheckResult.falldownSide.rawValue) * 90.0 / 180.0 * Float.pi)
