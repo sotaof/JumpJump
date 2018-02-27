@@ -47,6 +47,7 @@ class Game {
     var cameraController: CameraController!
     var inputController: PressInputController!
     var scoreController: ScoreController!
+    var coinController: CoinController!
     
     // Hard Level
     var hardLevel: Int = 0
@@ -65,6 +66,7 @@ class Game {
         setupCameraController()
         setupInputController()
         setupScoreController()
+        setupCoinController()
         
         displayLink = CADisplayLink.init(target: self, selector: #selector(update(displayLink:)))
         displayLink.add(to: RunLoop.main, forMode: .commonModes)
@@ -137,7 +139,7 @@ class Game {
     }
     
     func update(timeSinceLastUpdate: TimeInterval) {
-        let controllers: [ControllerProtocol] = [inputController, boxController, playerController, cameraController]
+        let controllers: [ControllerProtocol] = [inputController, boxController, playerController, cameraController, coinController]
         for controller in controllers {
             controller.update(timeSinceLastUpdate: timeSinceLastUpdate)
         }
@@ -228,6 +230,9 @@ extension Game: PlayerControllerDelegate {
     func playerControllerLandSuccess(player: Player, box: BaseBox) {
         if let nextBox = self.boxController.nextBox, nextBox === box {
             self.boxController.createNextBox()
+            if let nextBox = self.boxController.nextBox {
+                self.coinController.genCoinOnBox(box: nextBox)
+            }
             self.cameraController.updateCamera()
             if !self.isAutoPlay {
                 self.scoreController.addScore(1)
@@ -265,6 +270,13 @@ extension Game: ScoreControllerDelegate {
 //        SCNTransaction.begin()
         self.floorNode.geometry?.firstMaterial?.diffuse.contents = UIColor.randomColorWithFixSB(saturation: 0.09, brightness: 0.81).cgColor
 //        SCNTransaction.commit()
+    }
+}
+
+// Coin Controller
+extension Game {
+    func setupCoinController() {
+        self.coinController = CoinController.init(rootNode: self.gameNode, player: self.player)
     }
 }
 

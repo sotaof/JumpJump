@@ -10,6 +10,8 @@
 		3D0871562024A74500FBA63F /* desktop.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D0871552024A74500FBA63F /* desktop.obj */; };
 		3D0871582024A78200FBA63F /* base2.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0871572024A78200FBA63F /* base2.png */; };
 		3D08715A2024AB9C00FBA63F /* base3.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D0871592024AB9C00FBA63F /* base3.png */; };
+		3D110F592045882F00683C51 /* CoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D110F582045882F00683C51 /* CoinController.swift */; };
+		3D110F5B20458C1D00683C51 /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D110F5A20458C1D00683C51 /* Coin.swift */; };
 		3D6EA2FB2018C7E500BC76BA /* base4.uvw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F32018C7E400BC76BA /* base4.uvw.png */; };
 		3D6EA2FC2018C7E500BC76BA /* bump.obj in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F42018C7E400BC76BA /* bump.obj */; };
 		3D6EA2FD2018C7E500BC76BA /* base1.uvw.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EA2F52018C7E400BC76BA /* base1.uvw.png */; };
@@ -77,6 +79,8 @@
 		3D0871552024A74500FBA63F /* desktop.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = desktop.obj; sourceTree = "<group>"; };
 		3D0871572024A78200FBA63F /* base2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base2.png; sourceTree = "<group>"; };
 		3D0871592024AB9C00FBA63F /* base3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base3.png; sourceTree = "<group>"; };
+		3D110F582045882F00683C51 /* CoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinController.swift; sourceTree = "<group>"; };
+		3D110F5A20458C1D00683C51 /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		3D6EA2F32018C7E400BC76BA /* base4.uvw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base4.uvw.png; sourceTree = "<group>"; };
 		3D6EA2F42018C7E400BC76BA /* bump.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bump.obj; sourceTree = "<group>"; };
 		3D6EA2F52018C7E400BC76BA /* base1.uvw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = base1.uvw.png; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 				E642CA600B160834871C4791 /* PlayerController.swift */,
 				E642CCECD64139B287B16A3D /* ControllerProtocol.swift */,
 				3D75A8361FFBC9F000B93F3C /* ScoreController.swift */,
+				3D110F582045882F00683C51 /* CoinController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -305,6 +310,7 @@
 			children = (
 				E642C5042BEA9EFB56615623 /* Player.swift */,
 				E642CEF4CB02709223956FB6 /* BaseBox.swift */,
+				3D110F5A20458C1D00683C51 /* Coin.swift */,
 			);
 			path = Roles;
 			sourceTree = "<group>";
@@ -565,7 +571,9 @@
 				E642CD3666201FCD975B240D /* BaseBox.swift in Sources */,
 				3DF8C1351FFFC76F00190073 /* GameARViewController.swift in Sources */,
 				3D75A8371FFBC9F000B93F3C /* ScoreController.swift in Sources */,
+				3D110F5B20458C1D00683C51 /* Coin.swift in Sources */,
 				E642CDD9D0E78B221799436D /* SCNOperators.swift in Sources */,
+				3D110F592045882F00683C51 /* CoinController.swift in Sources */,
 				E642C4D8C495D166DE36754F /* SimpleCollider.swift in Sources */,
 				3D75A83C1FFD2A9800B93F3C /* StringImageGenerator.swift in Sources */,
 				E642C35AC971E968970A704D /* PressInputController.swift in Sources */,

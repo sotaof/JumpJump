@@ -22,6 +22,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate, GameDelega
     
     var game: Game!
     @IBOutlet weak var scoreLabel: ScoreCard!
+    @IBOutlet weak var coinCountLabel: UILabel!
     @IBOutlet weak var scnView: SCNView!
     @IBOutlet weak var gameOverPanel: RestartPanel!
     
@@ -119,6 +120,12 @@ extension GameViewController: ScoreControllerDelegate {
                 })
             }
         }
+    }
+}
+
+extension GameViewController: CoinControllerDelegate {
+    func setupCoinController() {
+//        game.coinController.delegates += 
     }
 }
 

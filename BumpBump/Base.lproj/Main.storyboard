@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -152,16 +153,31 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZ2-NY-0H3" customClass="SCNView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AGS-YH-cTa" customClass="ScoreCard" customModule="BumpBump" customModuleProvider="target">
-                                <rect key="frame" x="60" y="50" width="200" height="50"/>
+                                <rect key="frame" x="60" y="95" width="200" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5Eb-46-8se"/>
                                     <constraint firstAttribute="width" constant="200" id="bsx-GZ-N3f"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IH7-zj-47w">
+                                <rect key="frame" x="243" y="31" width="27" height="29"/>
+                                <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.062745098040000002" green="0.68235294120000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UW8-fl-nFv">
+                                <rect key="frame" x="270" y="30" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="9q4-dS-jH9"/>
+                                    <constraint firstAttribute="height" constant="30" id="ikc-E5-7QM"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92r-LM-ibt" userLabel="GameFinishPanel" customClass="RestartPanel" customModule="BumpBump" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
@@ -256,14 +272,19 @@
                             <constraint firstItem="92r-LM-ibt" firstAttribute="top" secondItem="iLz-F3-DmL" secondAttribute="top" id="77U-Ac-WZQ"/>
                             <constraint firstItem="AGS-YH-cTa" firstAttribute="centerX" secondItem="iLz-F3-DmL" secondAttribute="centerX" id="Bqi-0O-4Vh"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="trailing" secondItem="iLz-F3-DmL" secondAttribute="trailing" id="Ckk-iA-ZiB"/>
-                            <constraint firstItem="AGS-YH-cTa" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" constant="30" id="Vhk-Xr-0wX"/>
+                            <constraint firstItem="IH7-zj-47w" firstAttribute="centerY" secondItem="UW8-fl-nFv" secondAttribute="centerY" id="DNX-nM-b3c"/>
+                            <constraint firstItem="UW8-fl-nFv" firstAttribute="leading" secondItem="IH7-zj-47w" secondAttribute="trailing" id="KMd-UW-cKM"/>
+                            <constraint firstItem="AGS-YH-cTa" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" constant="75" id="Vhk-Xr-0wX"/>
                             <constraint firstAttribute="bottom" secondItem="pZ2-NY-0H3" secondAttribute="bottom" id="bHQ-Qh-hRu"/>
+                            <constraint firstAttribute="trailing" secondItem="UW8-fl-nFv" secondAttribute="trailing" constant="20" id="nF5-mi-I2T"/>
+                            <constraint firstItem="UW8-fl-nFv" firstAttribute="top" secondItem="iLz-F3-DmL" secondAttribute="topMargin" constant="10" id="nxe-s1-Frx"/>
                             <constraint firstAttribute="trailing" secondItem="pZ2-NY-0H3" secondAttribute="trailing" id="qXg-u6-eBF"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="bottom" secondItem="iLz-F3-DmL" secondAttribute="bottom" id="tDb-eT-7Aq"/>
                             <constraint firstItem="92r-LM-ibt" firstAttribute="leading" secondItem="iLz-F3-DmL" secondAttribute="leading" id="v3h-F4-8BG"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="coinCountLabel" destination="IH7-zj-47w" id="Xdv-uQ-THS"/>
                         <outlet property="gameOverPanel" destination="92r-LM-ibt" id="p4S-oR-zws"/>
                         <outlet property="scnView" destination="pZ2-NY-0H3" id="ZXj-eH-2x4"/>
                         <outlet property="scoreLabel" destination="AGS-YH-cTa" id="7HM-Sh-Ccn"/>
@@ -271,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="152" y="-794"/>
+            <point key="canvasLocation" x="151.875" y="-795"/>
         </scene>
     </scenes>
     <resources>
